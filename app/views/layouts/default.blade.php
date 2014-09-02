@@ -16,11 +16,11 @@
 		.welcome {
 			width: 300px;
 			height: 200px;
-			position: absolute;
+			position: fixed;
 			left: 50%;
-			top: 50%;
+			top: 10%;
 			margin-left: -150px;
-			margin-top: -100px;
+			margin-top: 5px;
 		}
 
 		a, a:visited {
@@ -28,7 +28,7 @@
 		}
 
 		h1 {
-			font-size: 32px;
+			font-size: 30px;
 			margin: 16px 0 0 0;
 		}
 	</style>
