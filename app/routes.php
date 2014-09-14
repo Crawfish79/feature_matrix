@@ -14,3 +14,5 @@
 Route::get('/', 'PagesController@home');
 
 Route::get('profiles/{siteName}', 'PagesController@profile');
+
+Route::post('profiles/edit', 'PagesController@profileEditClientFeature');

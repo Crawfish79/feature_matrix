@@ -2,36 +2,51 @@
 
 class PagesController extends BaseController {
 
-
-	public function home()//returns all client sites from ClientSites table
+	//returns all client sites from ClientSites table
+	public function home()
 	{
 		$clients = ClientSite::all();
 		return View::make('index')->with('clients',$clients);
 	}
-	
-	public function profile($siteName)//returns client and client feature info for profile
-	{	
-		$site = ClientSite::whereSitename($siteName)->first();//select * from clientSites where siteName = $siteName			
-  		$id = $site['clientID'];//getting clientID for use in join query
+	//returns client and client feature info for profile
+	public function profile($siteName)
+	{	//select * from clientSites where siteName = $siteName
+		$client = ClientSite::whereSitename($siteName)->first();			
+  		$clientID = $client['clientID'];//getting clientID for use in join query
+		//queries for retrieving features of each group for the selected client
 		
-		$forms = DB::table('features')->join('clientFeatures', function($join) use($id) 
+		$forms = DB::table('features')->join('clientFeatures', function($join) use($clientID) 
         {
             $join->on( 'clientFeatures.featureID', '=', 'features.featureID')			
-                 ->where('clientFeatures.clientID', '=', $id)
+                 ->where('clientFeatures.clientID', '=', $clientID)
 	             ->where('features.groupID', '=', 1);
-		})
-        ->get();
+		})->get();
 		
-				$widgets = DB::table('features')->join('clientFeatures', function($join) use($id) 
+		$widgets = DB::table('features')->join('clientFeatures', function($join) use($clientID) 
         {
             $join->on( 'clientFeatures.featureID', '=', 'features.featureID')			
-                 ->where('clientFeatures.clientID', '=', $id)
+                 ->where('clientFeatures.clientID', '=', $clientID)
 	             ->where('features.groupID', '=', 2);
-		})
-        ->get();
+		})->get();
 				 
-		return View::make('profiles.show')->with('site',$site)->with('forms',$forms)->with('widgets',$widgets);	
+		return View::make('profiles.show')->with('client',$client)->with('forms',$forms)->with('widgets',$widgets);	
 				
+	}
+	//edit the clients features for selected group
+	public function profileEditClientFeature()
+	{	//use clientID and groupID for queries
+		$clientID = Input::get('clientID');
+		$groupID = Input::get('groupID');
+		//queries for checking featureID values of 'clientFeatures' against 'features' to determine if checkbox is true or not
+		
+		//get all features from a particular group		
+		$featuresOfGroup = DB::table('features')->where('groupID', '=', $groupID )->get();
+		//get all features from a particular client -place featureID's in an array
+		$clientFeatures = DB::table('clientFeatures')->where('clientID', '=', $clientID)->get();
+		$clientFeatures_FeatureID = array_pluck($clientFeatures,'featureID');
+		
+		return View::make('profiles.edit')->with('featuresOfGroup',$featuresOfGroup)
+										  ->with('clientFeatures_FeatureID',$clientFeatures_FeatureID);
 	}
 	
 }
