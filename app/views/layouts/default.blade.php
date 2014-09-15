@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Dynamix Feature Matrix</title>
 	    <!-- Bootstrap -->
+	    <link rel="stylesheet" href="/dynamix_feature_matrix.css">
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/flick/jquery-ui.css">
 	    <link rel="stylesheet" href="https://cdn.datatables.net/plug-ins/725b2a2115b/integration/jqueryui/dataTables.jqueryui.css">
@@ -19,10 +20,10 @@
     <![endif]-->
 
 </head>
-	<body style = "padding-top: 195px;">
+	<body>
 	<div class="navbar navbar-fixed-top navbar-default" role="navigation">
 		<div class="nav-header">
-		   <h3 style = "padding: 5px 10px;">{{HTML::image('images/DynamiX-logo.png')}}&nbsp;<small>Feature Matrix</small></h3>
+		   <h3 id="logo">{{HTML::image('images/DynamiX-logo.png')}}&nbsp;<small>Feature Matrix</small></h3>
 	    </div> 	
       <!-- Static navbar -->
         <div class="container-fluid bg-info">

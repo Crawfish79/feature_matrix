@@ -1,0 +1,16 @@
+body
+		{
+				padding-top:195px;
+		}
+
+#logo
+		{		
+				padding: 5px 10px;		
+		}
+			
+.profileForm
+		{
+				float:left;
+				width:200px;
+				margin:5px 10px;
+		}

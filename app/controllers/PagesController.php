@@ -29,12 +29,14 @@ class PagesController extends BaseController {
 	             ->where('features.groupID', '=', 2);
 		})->get();
 				 
-		return View::make('profiles.show')->with('client',$client)->with('forms',$forms)->with('widgets',$widgets);	
+		return View::make('profiles.clientProfiles')->with('client',$client)->with('forms',$forms)->with('widgets',$widgets);	
 				
 	}
 	//edit the clients features for selected group
 	public function profileEditClientFeature()
 	{	//use clientID and groupID for queries
+		$group = Input::get('group');
+		$siteName = Input::get('siteName');
 		$clientID = Input::get('clientID');
 		$groupID = Input::get('groupID');
 		//queries for checking featureID values of 'clientFeatures' against 'features' to determine if checkbox is true or not
@@ -45,8 +47,9 @@ class PagesController extends BaseController {
 		$clientFeatures = DB::table('clientFeatures')->where('clientID', '=', $clientID)->get();
 		$clientFeatures_FeatureID = array_pluck($clientFeatures,'featureID');
 		
-		return View::make('profiles.edit')->with('featuresOfGroup',$featuresOfGroup)
-										  ->with('clientFeatures_FeatureID',$clientFeatures_FeatureID);
+		return View::make('edit.clientFeatureEdit')->with('featuresOfGroup',$featuresOfGroup)
+										  ->with('clientFeatures_FeatureID',$clientFeatures_FeatureID)
+										  ->with('siteName',$siteName)->with('group',$group);
 	}
 	
 }

@@ -13,6 +13,6 @@
 
 Route::get('/', 'PagesController@home');
 
-Route::get('profiles/{siteName}', 'PagesController@profile');
+Route::get('ClientProfile/{siteName}', 'PagesController@profile');
 
-Route::post('profiles/edit', 'PagesController@profileEditClientFeature');
+Route::post('ClientProfileEdit', 'PagesController@profileEditClientFeature');
