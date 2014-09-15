@@ -28,8 +28,34 @@ class PagesController extends BaseController {
                  ->where('clientFeatures.clientID', '=', $clientID)
 	             ->where('features.groupID', '=', 2);
 		})->get();
+		
+		$gadgets = DB::table('features')->join('clientFeatures', function($join) use($clientID) 
+        {
+            $join->on( 'clientFeatures.featureID', '=', 'features.featureID')			
+                 ->where('clientFeatures.clientID', '=', $clientID)
+	             ->where('features.groupID', '=', 3);
+		})->get();
+		
+		$maps = DB::table('features')->join('clientFeatures', function($join) use($clientID) 
+        {
+            $join->on( 'clientFeatures.featureID', '=', 'features.featureID')			
+                 ->where('clientFeatures.clientID', '=', $clientID)
+	             ->where('features.groupID', '=', 4);
+		})->get();
 				 
-		return View::make('profiles.clientProfiles')->with('client',$client)->with('forms',$forms)->with('widgets',$widgets);	
+		$tools = DB::table('features')->join('clientFeatures', function($join) use($clientID) 
+        {
+            $join->on( 'clientFeatures.featureID', '=', 'features.featureID')			
+                 ->where('clientFeatures.clientID', '=', $clientID)
+	             ->where('features.groupID', '=', 5);
+		})->get();
+
+		return View::make('profiles.clientProfiles')->with('client',$client)
+													->with('forms',$forms)
+													->with('widgets',$widgets)
+													->with('gadgets',$gadgets)
+													->with('maps',$maps)
+													->with('tools',$tools);	
 				
 	}
 	//edit the clients features for selected group

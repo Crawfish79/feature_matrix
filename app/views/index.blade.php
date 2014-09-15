@@ -5,7 +5,7 @@
 		<div class="panel panel-primary">
 		  <!-- Default panel contents -->
 		  <div class="panel-heading"><h4>Dynamix Client Websites</h4></div>	
-			<table width="100%" id = "siteTable" class="table table-hover">
+			<table width="100%" id = "siteTable" class="display">
 				<thead><tr><th>Name</th><th>Launch_date</th><th>Description</th></tr></thead>
 				<tfoot><tr><th>Name</th><th>Launch_date</th><th>Description</th></tr></tfoot>
 

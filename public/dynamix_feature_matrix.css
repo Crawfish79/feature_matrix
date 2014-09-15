@@ -11,6 +11,11 @@ body
 .profileForm
 		{
 				float:left;
-				width:200px;
+				width:205px;height:300px;
 				margin:5px 10px;
+		}
+		
+.profileEditBtn
+		{
+		
 		}
