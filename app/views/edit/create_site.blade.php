@@ -5,15 +5,19 @@
  */
 
 @extends('layouts.default')
-
 @section('content')
-
-		<h1>Create New </h1>
+@if(isset($_POST['submit']))
+	<h1>Client Site Has been Added</h1>
+@else
+	<div class="panel panel-primary">
+	
+	</div>	
 		{{ Form::open(['route' => 'ClientSites.store']) }}
 		<div>
 		  {{ Form::label('siteName', ' WebSite Name:') }}
 		  {{ Form::text('siteName') }}
 		  </div>
+		  
 		   <div>
 		   {{ Form::label('launchDate', 'Launch Date:') }}
 		  {{ Form::date('launchDate') }}
@@ -26,6 +30,9 @@
 		  {{ Form::submit('Create') }}</div>
 		
 		{{ Form::close()}}
+
+	@endif
+@stop
 
 @stop
 	   
