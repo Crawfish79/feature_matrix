@@ -1,39 +1,43 @@
-/*
- |Add a website to the database
- |
- |
- */
 
 @extends('layouts.default')
 @section('content')
-@if(isset($_POST['submit']))
-	<h1>Client Site Has been Added</h1>
-@else
-	<div class="panel panel-primary">
-	
-	</div>	
-		{{ Form::open(['route' => 'ClientSites.store']) }}
-		<div>
-		  {{ Form::label('siteName', ' WebSite Name:') }}
-		  {{ Form::text('siteName') }}
-		  </div>
-		  
-		   <div>
-		   {{ Form::label('launchDate', 'Launch Date:') }}
-		  {{ Form::date('launchDate') }}
-		  </div>
-		   <div>
-		   {{ Form::label('description', 'Description:') }}
-		  {{ Form::text('description') }}
-		  </div>
-		  <div>
-		  {{ Form::submit('Create') }}</div>
-		
-		{{ Form::close()}}
-
-	@endif
+			<section class="header section-padding">
+					<div class="background">&nbsp;</div>
+					<div style="text-align:center">
+					<div class="container">
+						<div class="header-text">
+								<h1>Add A Site</h1>
+							</div>
+								
+						</div>
+					</div>
+				</section>
+			
+					
+					
+						<div class="form-group">
+					
+				{{ Form::open(['url'=> '/create', 'class' => 'form']) }}
+					</div>
+					<div class="form-group">
+					
+					
+					{{ Form::label('siteName', 'SiteUrl') }}
+					{{ Form::text('siteName', null,['class'=>'form-control']) }}
+					</div>
+					
+					<div class="form-group">
+				
+				
+					{{ Form::label('description', 'description') }}
+					{{ Form::text('description', null,['class'=>'form-control']) }}
+						</div>
+				
+				<div class="form-group">
+					{{ Form::submit('Create Site Listing', ['class'=>'btn btn-primary']) }}
+				</div>
+				{{ Form::close() }}
+					</div>
+			
+			</div>
 @stop
-
-@stop
-	   
-	
