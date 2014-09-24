@@ -41,9 +41,12 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Features<span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-					<li><a href="#">Forms</a></li>
-					<li><a href="#">Widgets</a></li>
-					<li><a href="#">Others</a></li>
+					<li>{{Form::open(array('action' => 'PagesController@groupProfile'))}}{{Form::submit('Forms',array('class'=>'btn btn-block'))}}{{Form::hidden('groupID', '1')}}{{Form::hidden('groupName', 'forms')}}{{Form::close()}}</li>
+					<li>{{Form::open(array('action' => 'PagesController@groupProfile'))}}{{Form::submit('Widgets',array('class'=>'btn btn-block'))}}{{Form::hidden('groupID', '2')}}{{Form::hidden('groupName', 'widgets')}}{{Form::close()}}</li>
+					<li>{{Form::open(array('action' => 'PagesController@groupProfile'))}}{{Form::submit('Gadgets',array('class'=>'btn btn-block'))}}{{Form::hidden('groupID', '3')}}{{Form::hidden('groupName', 'gadgets')}}{{Form::close()}}</li>
+					<li>{{Form::open(array('action' => 'PagesController@groupProfile'))}}{{Form::submit('Maps',array('class'=>'btn btn-block'))}}{{Form::hidden('groupID', '4')}}{{Form::hidden('groupName', 'maps')}}{{Form::close()}}</li>
+					<li>{{Form::open(array('action' => 'PagesController@groupProfile'))}}{{Form::submit('Tools',array('class'=>'btn btn-block'))}}{{Form::hidden('groupID', '5')}}{{Form::hidden('groupName', 'tools')}}{{Form::close()}}</li>
+					
                 </ul>
               <li><a href="#">Add Site</a></li>
             </ul>
@@ -60,15 +63,15 @@
 	@yield('content')
 	  </div>	
 	    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/plug-ins/725b2a2115b/integration/jqueryui/dataTables.jqueryui.js"></script>
+    {{ HTML::script("https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")}}
+    {{ HTML::script("https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js")}}
+    {{ HTML::script("https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js")}}
+    {{ HTML::script("https://cdn.datatables.net/plug-ins/725b2a2115b/integration/jqueryui/dataTables.jqueryui.js")}}
 	<script>
 	
 	$(document).ready(function() {
 	    $('#siteTable').dataTable( {
-	        "scrollY":        "200px",
+	        "scrollY":        "100px",
 	        "scrollCollapse": true,
 	        "paging":         true
 	    } );

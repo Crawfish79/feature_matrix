@@ -14,11 +14,11 @@ class CreateClientSitesTable extends Migration {
 	{
 		Schema::create('ClientSites', function(Blueprint $table)
 		{
-				
+				$table->engine = 'InnoDB';
 				$table->increments('clientID');
 				$table->string('siteName');
 				$table->Date('launchDate');
-				$table->Text('description');
+				$table->Text('description')->nullable();
 				$table->timestamps();
 				//
 		});

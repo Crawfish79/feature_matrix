@@ -74,8 +74,43 @@ class PagesController extends BaseController {
 		$clientFeatures_FeatureID = array_pluck($clientFeatures,'featureID');
 		
 		return View::make('edit.clientFeatureEdit')->with('featuresOfGroup',$featuresOfGroup)
-										  ->with('clientFeatures_FeatureID',$clientFeatures_FeatureID)
-										  ->with('siteName',$siteName)->with('group',$group);
+												  ->with('clientFeatures_FeatureID',$clientFeatures_FeatureID)
+												  ->with('siteName',$siteName)->with('group',$group);
 	}
 	
+	public function groupProfile()
+	{
+		$groupName = Input::get('groupName');
+		$groupID = Input::get('groupID');
+		$featuresOfGroup = DB::table('features')->where('groupID','=', $groupID )->get();
+		return View::make('profiles.featureGroupProfile')->with('groupName',$groupName)
+														 ->with('groupID',$groupID)
+														 ->with('featuresOfGroup',$featuresOfGroup);
+				
+	}
+	
+	public function groupProfileFeatureDelete()
+	{
+
+			$featureID = $_POST['featureID'];
+			$featureDelete = DB::table('features')->where('featureID','=',$featureID)->delete();
+			return View::make('profiles.featureGroupProfile')->with('featureID',$featureID);
+
+		
+	}
+
+	public function featureGroupFeatureAdd()
+	{
+		$groupName = Input::get('groupName');	
+		$groupID = Input::get('groupID');
+				
+		if(!empty($_POST['featureName'])){
+			$featureName = $_POST['featureName'];
+			$featureAdd = DB::table('features')->insertGetId(array('groupID' => $groupID, 'featureName' => $featureName));
+			return View::make('edit.featureGroupFeatureAdd');
+		}else{
+			return View::make('edit.featureGroupFeatureAdd')->with('groupName',$groupName)->with('groupID',$groupID);
+		}
+	}
+
 }

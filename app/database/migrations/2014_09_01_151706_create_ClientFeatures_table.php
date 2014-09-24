@@ -14,9 +14,9 @@ class CreateClientFeaturesTable extends Migration {
 	{
 		Schema::create('ClientFeatures', function(Blueprint $table)
 		{
-		
-				$table->integer('clientID');
-				$table->integer('featureID');
+				$table->engine = 'InnoDB';
+				$table->integer('clientID')->unsigned();
+				$table->integer('featureID')->unsigned();
 				$table->timestamps();
 				$table->primary(array('clientID', 'featureID'));
 				$table->foreign('clientID')->references('clientID')->on('ClientSites')->onUpdate('cascade')->onDelete('cascade');			

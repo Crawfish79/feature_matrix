@@ -2,6 +2,7 @@
 @extends('layouts.default')
 
 @section('content')
+		<div class = "panels">
 		<div class="panel panel-primary">
 		  <!-- Default panel contents -->
 		  <div class="panel-heading"><h4>Dynamix Client Websites</h4></div>	
@@ -17,5 +18,6 @@
 					</tr>
 				@endforeach
 		   </table>
+		</div>
 		</div>
 @stop

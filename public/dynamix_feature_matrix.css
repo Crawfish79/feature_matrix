@@ -8,14 +8,34 @@ body
 				padding: 5px 10px;		
 		}
 			
+.panels
+		{
+				-moz-box-shadow: 0 0 5px #888;
+ 				-webkit-box-shadow: 0 0 5px#888;
+ 				box-shadow: 0 0 5px #888;			
+		}			
 .profileForm
 		{
+				position: relative;
 				float:left;
-				width:205px;height:300px;
+				width:205px;min-height:300px;
 				margin:5px 10px;
+				-moz-box-shadow: 0 0 5px #888;
+ 				-webkit-box-shadow: 0 0 5px#888;
+ 				box-shadow: 0 0 5px #888;
 		}
 		
 .profileEditBtn
 		{
-		
+				position: absolute;
+				bottom:0;
+		}
+.btnLink
+		{
+			
+				width:135px;
+				float:right;
+				-moz-box-shadow: 0 0 5px #888;
+ 				-webkit-box-shadow: 0 0 5px#888;
+ 				box-shadow: 0 0 5px #888;	
 		}

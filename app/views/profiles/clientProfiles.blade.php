@@ -3,14 +3,16 @@
 
 @section('content')
 	<!--website name and description-->
-	<div class="panel panel-primary">
-		<div class="panel-heading"><h3 "panel-title">{{$client->siteName}}</h3></div>
-	    <div class="panel-body">{{$client->description}}</div>
+	<div class = 'panels'>
+		<div class="panel panel-primary">
+			<div class="panel-heading"><h3 class = "panel-title">{{$client->siteName}}</h3></div>
+		    <div class="panel-body">{{$client->description}}</div>
+		</div>
 	</div>
 	<!--forms group-->
 	{{Form::open(array('action' => 'PagesController@profileEditClientFeature','class'=>'profileForm'))}}<!--pointing to controller -->			
 		<div class="panel panel-info">
-			<div class="panel-heading"><h4 "panel-title">Forms</h4></div>			
+			<div class="panel-heading"><h4>Forms</h4></div>			
 				<ul class="list-group">
 						@if($forms)
 							@foreach ($forms as $form)
@@ -30,7 +32,7 @@
 	<!--widgets group-->
 	{{Form::open(array('action' => 'PagesController@profileEditClientFeature','class'=>'profileForm'))}}<!--pointing to controller -->			
 		<div class="panel panel-info">
-			<div class="panel-heading"><h4 "panel-title">Widgets</h4></div>			
+			<div class="panel-heading"><h4>Widgets</h4></div>			
 				<ul class="list-group">
 						@if($widgets)
 							@foreach ($widgets as $widget)
@@ -52,7 +54,7 @@
 		<div class="panel panel-info">
 			<div class="panel-heading"><h4 "panel-title">Gadgets</h4></div>			
 				<ul class="list-group">
-						@if($widgets)
+						@if($gadgets)
 							@foreach ($gadgets as $gadget)
 									<li class="list-group-item">{{$gadget->featureName}}</li>
 							@endforeach
@@ -70,9 +72,9 @@
 	<!--maps group-->
 	{{Form::open(array('action' => 'PagesController@profileEditClientFeature','class'=>'profileForm'))}}<!--pointing to controller -->			
 		<div class="panel panel-info">
-			<div class="panel-heading"><h4 "panel-title">Maps</h4></div>			
+			<div class="panel-heading"><h4>Maps</h4></div>			
 				<ul class="list-group">
-						@if($widgets)
+						@if($maps)
 							@foreach ($maps as $map)
 									<li class="list-group-item">{{$map->featureName}}</li>
 							@endforeach
@@ -90,7 +92,7 @@
 	<!--tools group-->
 	{{Form::open(array('action' => 'PagesController@profileEditClientFeature','class'=>'profileForm'))}}<!--pointing to controller -->			
 		<div class="panel panel-info">
-			<div class="panel-heading"><h4 "panel-title">Tools</h4></div>			
+			<div class="panel-heading"><h4>Tools</h4></div>			
 				<ul class="list-group">
 						@if($tools)
 							@foreach ($tools as $tool)

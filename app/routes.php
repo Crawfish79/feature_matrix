@@ -12,7 +12,9 @@
 */
 
 Route::get('/', 'PagesController@home');
-
 Route::get('ClientProfile/{siteName}', 'PagesController@profile');
+Route::post('FeatureGroupProfile','PagesController@groupProfile');
+Route::post('FeatureGroupFeatureDelete','PagesController@groupProfileFeatureDelete');
+Route::post('FeatureGroupFeatureAdd','PagesController@featureGroupFeatureAdd');
+Route::post('ClientFeatureEdit', 'PagesController@profileEditClientFeature');
 
-Route::post('ClientProfileEdit', 'PagesController@profileEditClientFeature');

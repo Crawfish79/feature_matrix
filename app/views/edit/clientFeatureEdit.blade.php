@@ -4,10 +4,9 @@
 	<h1>client features have been updated</h1>
 @else
 	<div class="panel panel-primary">
-		<div class="panel-heading"><h3 "panel-title">{{$siteName}}'s Profile Edit:{{$group}}</h3></div>
-	</div>	
-		{{Form::open()}}
-		<div class="panel panel-primary center-block" style = "max-width:500px;">
+		<div class="panel-heading panels"><h3 class="panel-title">{{$siteName}}'s Feature Edit: {{$group}} update</h3></div>
+	</div>
+		{{Form::open(array('url' => '/ClientFeatureEdit','class'=>'profileForm'))}}
 			<ul class="list-group">
 				@foreach ($featuresOfGroup as $featureOfGroup)
 					@if((in_array($featureOfGroup->featureID, $clientFeatures_FeatureID)))
@@ -23,8 +22,7 @@
 					@endif
 				@endforeach
 			</ul>
-		<div>{{Form::submit('Edit '.$group,array('name'=>'submit','class'=>'btn btn-info btn-lg btn-block'))}}</div>
-		</div>	
-		{{Form::close()}}	
+		<div>{{Form::submit('Update '.$group,array('name'=>'submit','class'=>'btn btn-info btn-lg btn-block profileEditBtn'))}}</div>
+		{{Form::close()}}
 	@endif
 @stop

@@ -14,9 +14,9 @@ class CreateFeaturesTable extends Migration {
 	{
 		Schema::create('Features', function(Blueprint $table)
 		{
-			
+				$table->engine = 'InnoDB';
 				$table->increments('featureID');
-				$table->integer('groupID');
+				$table->integer('groupID')->unsigned();
 				$table->string('featureName');
 				$table->timestamps();
 				$table->foreign('groupID')->references('groupID')->on('FeatureGroups')->onUpdate('cascade')->onDelete('cascade');			

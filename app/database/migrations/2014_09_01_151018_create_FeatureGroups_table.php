@@ -14,7 +14,7 @@ class CreateFeatureGroupsTable extends Migration {
 	{
 		Schema::create('FeatureGroups', function(Blueprint $table)
 		{
-			
+				$table->engine = 'InnoDB';
 				$table->increments('groupID');
 				$table->string('groupName');
 				$table->timestamps();
