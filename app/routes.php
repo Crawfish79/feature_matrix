@@ -17,4 +17,6 @@ Route::post('FeatureGroupProfile','PagesController@groupProfile');
 Route::post('FeatureGroupFeatureDelete','PagesController@groupProfileFeatureDelete');
 Route::post('FeatureGroupFeatureAdd','PagesController@featureGroupFeatureAdd');
 Route::post('ClientFeatureEdit', 'PagesController@profileEditClientFeature');
+Route::get('/create','PagesController@create');
+Route::post('/create', 'PagesController@saveCreate');
 
