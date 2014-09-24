@@ -112,5 +112,22 @@ class PagesController extends BaseController {
 			return View::make('edit.featureGroupFeatureAdd')->with('groupName',$groupName)->with('groupID',$groupID);
 		}
 	}
+	//add a site to the database
+	 public function create()
+	     {
+	     		return View::make('edit.create_site');
+	     }
+	     //save the site to the database
+	  public function saveCreate()
+	     {
+	     		$input = Input::all();
+	     		
+	     		$ClientSites = new ClientSite;
+	     		$ClientSites->siteName = $input['siteName'];
+	     		$ClientSites->description = $input['description'];
+	     		$ClientSites->save();
+	     		
+	     		return Redirect::action('PagesController@home');
+	     	}
 
 }
