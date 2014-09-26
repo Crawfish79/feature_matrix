@@ -48,7 +48,7 @@
 					<li>{{Form::open(array('action' => 'PagesController@groupProfile'))}}{{Form::submit('Tools',array('class'=>'btn btn-block'))}}{{Form::hidden('groupID', '5')}}{{Form::hidden('groupName', 'tools')}}{{Form::close()}}</li>
 					
                 </ul>
-              <li><a href="#">Add Site</a></li>
+              <li><a href="{{ action('PagesController@create') }}">Create</a></li>
             </ul>
 		      <form class="navbar-form navbar-right" role="search">
 		        <div class="input-group-btn">
