@@ -120,12 +120,16 @@ class PagesController extends BaseController {
 	     //save the site to the database
 	  public function saveCreate()
 	     {
+	     	
 	     		$input = Input::all();
 	     		
 	     		$ClientSites = new ClientSite;
 	     		$ClientSites->siteName = $input['siteName'];
+				$ClientSites->launchDate = $input['launchDate'];
 	     		$ClientSites->description = $input['description'];
+				
 	     		$ClientSites->save();
+	     		
 	     		
 	     		return Redirect::action('PagesController@home');
 	     	}
