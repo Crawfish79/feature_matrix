@@ -22,7 +22,7 @@
 					<div class="form-group">
 					
 					
-					{{ Form::label('siteName', 'SiteUrl') }}
+					{{ Form::label('siteName', 'WebSite') }}
 					{{ Form::text('siteName', null,['class'=>'form-control']) }}
 					</div>
 					
@@ -32,6 +32,13 @@
 					{{ Form::label('description', 'description') }}
 					{{ Form::text('description', null,['class'=>'form-control']) }}
 						</div>
+								
+					<div class="form-group">
+				
+				
+					{{ Form::label('launchDate', 'Launch Date ') }}
+					{{ Form::text('launchDate', null,['placeholder'=>'0000-00-00','class'=>'form-control']) }}
+					</div>
 				
 				<div class="form-group">
 					{{ Form::submit('Create Site Listing', ['class'=>'btn btn-primary']) }}
