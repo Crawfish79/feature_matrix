@@ -3,10 +3,10 @@
 @section('content')
 		<div class = 'panels'>
 		<div class="panel panel-primary">
-			<div class="panel-body bg-warning">
-									<div class="panel-heading"<h1>Add A Site</h1></div>
+			
+									<div class="panel-heading"><h3 class="panel-title">Add A Site</h3></div>
 						
-								
+				<div class="panel-body bg-warning">				
 					
 		
 			
