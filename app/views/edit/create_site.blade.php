@@ -20,13 +20,13 @@
 					
 					
 					{{ Form::label('siteName', 'WebSite') }}
-					<div class="col-sm-4">{{ Form::text('siteName', null,['placeholder'=>'http://www.example.com','class'=>'form-control']) }}</div>
+					<div class="col-sm-4">{{ Form::text('siteName', null,['placeholder'=>'http://www.example.com','class'=>'form-control','required' => 'required']) }}</div>
 				
 					</div>
 					
 					<div class="form-group">
 						{{ Form::label('description', 'Description') }}
-					<div class="col-sm-4">{{ Form::text('description', null,['placeholder'=>'This site ...','class'=>'form-control']) }}</div>
+					<div class="col-sm-4">{{ Form::text('description', null,['placeholder'=>'This site ...','class'=>'form-control','required' => 'required']) }}</div>
 						</div>
 						
 					<div class="form-group">
