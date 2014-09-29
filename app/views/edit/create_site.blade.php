@@ -20,7 +20,7 @@
 					
 					
 					{{ Form::label('siteName', 'WebSite') }}
-					<div class="col-sm-4">{{ Form::text('siteName', null,['placeholder'=>'http://www.example.com','class'=>'form-control','required' => 'required']) }}</div>
+					<div class="col-sm-4">{{ Form::text('siteName', null,['placeholder'=>'www.example.com','class'=>'form-control','required' => 'required']) }}</div>
 				
 					</div>
 					
