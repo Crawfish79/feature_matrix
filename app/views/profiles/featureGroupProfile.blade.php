@@ -12,8 +12,8 @@
 			<div class="panel-body">Delete features or add new features to the group</div>
 		</div>
 	</div>
-	
-	{{Form::open(array('action' => 'PagesController@groupProfileFeatureDelete','class'=>'profileForm'))}}
+	<div class="selectionForm">
+	{{Form::open(array('action' => 'PagesController@groupProfileFeatureDelete'))}}
 	<ul class="list-group">	
 		@foreach ($featuresOfGroup as $featureOfGroup)
 			<li class="list-group-item"><h5>							
@@ -22,6 +22,7 @@
 			</h5></li>				
 		@endforeach	
 	</ul>
+	
 	<!-- Modal inside form -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
@@ -38,11 +39,12 @@
 	  </div>
 	</div>
 	<!-- End Modal -->	
-	<div>{{Form::button('Delete Feature',array('name'=>'deleteFeat','class'=>'btn btn-danger btn-block profileEditBtn','data-toggle'=>'modal', 'data-target'=>'#myModal'))}}</div>
-	{{Form::close()}}
 	
-	{{Form::open(array('action' => 'PagesController@featureGroupFeatureAdd','class'=>'btnLink'))}}
-		<div>{{Form::submit('Add New Feature',array('name'=>'addFeat','class'=>'btn btn-info'))}}</div>
+	<div>{{Form::button('Delete Feature',array('name'=>'deleteFeat','class'=>'btn btn-danger btnLink','data-toggle'=>'modal', 'data-target'=>'#myModal'))}}</div>
+	{{Form::close()}}
+	</div>
+	{{Form::open(array('action' => 'PagesController@featureGroupFeatureAdd'))}}
+		<div>{{Form::submit('Add New Feature',array('name'=>'addFeat','class'=>'btn btn-info btnLink'))}}</div>
 		{{Form::hidden('groupName', $groupName)}}
 		{{Form::hidden('groupID', $groupID)}}
 	{{Form::close()}}

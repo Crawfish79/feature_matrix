@@ -10,7 +10,7 @@
 		</div>
 	</div>
 	<!--forms group-->
-	{{Form::open(array('action' => 'PagesController@profileEditClientFeature','class'=>'profileForm'))}}<!--pointing to controller -->			
+	{{Form::open(array('action' => 'PagesController@ClientFeatureEdit','class'=>'profileForm'))}}<!--pointing to controller -->			
 		<div class="panel panel-info">
 			<div class="panel-heading"><h4>Forms</h4></div>			
 				<ul class="list-group">
@@ -27,10 +27,10 @@
 				{{ Form::hidden('clientID', $client->clientID)}}
 				{{ Form::hidden('groupID',1) }}	
 			</div> 
-		<div>{{Form::submit('Edit Forms',array('class'=>'btn btn-info btn-lg btn-block profileEditBtn'))}}</div>
+		<div>{{Form::submit('Edit Forms',array('class'=>'btn btn-info btn-block profileEditBtn'))}}</div>
 	{{Form::close()}}
 	<!--widgets group-->
-	{{Form::open(array('action' => 'PagesController@profileEditClientFeature','class'=>'profileForm'))}}<!--pointing to controller -->			
+	{{Form::open(array('action' => 'PagesController@ClientFeatureEdit','class'=>'profileForm'))}}<!--pointing to controller -->			
 		<div class="panel panel-info">
 			<div class="panel-heading"><h4>Widgets</h4></div>			
 				<ul class="list-group">
@@ -47,10 +47,10 @@
 				{{ Form::hidden('clientID', $client->clientID)}}
 				{{ Form::hidden('groupID',2) }}	
 			</div> 
-		<div>{{Form::submit('Edit Widgets',array('class'=>'btn btn-info btn-lg btn-block profileEditBtn'))}}</div>		 		
+		<div>{{Form::submit('Edit Widgets',array('class'=>'btn btn-info btn-block profileEditBtn'))}}</div>		 		
 	{{Form::close()}}
 	<!--gadgets group-->
-	{{Form::open(array('action' => 'PagesController@profileEditClientFeature','class'=>'profileForm'))}}<!--pointing to controller -->			
+	{{Form::open(array('action' => 'PagesController@ClientFeatureEdit','class'=>'profileForm'))}}<!--pointing to controller -->			
 		<div class="panel panel-info">
 			<div class="panel-heading"><h4 "panel-title">Gadgets</h4></div>			
 				<ul class="list-group">
@@ -67,10 +67,10 @@
 				{{ Form::hidden('clientID', $client->clientID)}}
 				{{ Form::hidden('groupID',3) }}	
 			</div> 
-		<div>{{Form::submit('Edit Gadgets',array('class'=>'btn btn-info btn-lg btn-block profileEditBtn'))}}</div>		 		
+		<div>{{Form::submit('Edit Gadgets',array('class'=>'btn btn-info btn-block profileEditBtn'))}}</div>		 		
 	{{Form::close()}}
 	<!--maps group-->
-	{{Form::open(array('action' => 'PagesController@profileEditClientFeature','class'=>'profileForm'))}}<!--pointing to controller -->			
+	{{Form::open(array('action' => 'PagesController@ClientFeatureEdit','class'=>'profileForm'))}}<!--pointing to controller -->			
 		<div class="panel panel-info">
 			<div class="panel-heading"><h4>Maps</h4></div>			
 				<ul class="list-group">
@@ -87,10 +87,10 @@
 				{{ Form::hidden('clientID', $client->clientID)}}
 				{{ Form::hidden('groupID',4) }}	
 			</div> 
-		<div>{{Form::submit('Edit Maps',array('class'=>'btn btn-info btn-lg btn-block profileEditBtn'))}}</div>		 		
+		<div>{{Form::submit('Edit Maps',array('class'=>'btn btn-info btn-block profileEditBtn'))}}</div>		 		
 	{{Form::close()}}
 	<!--tools group-->
-	{{Form::open(array('action' => 'PagesController@profileEditClientFeature','class'=>'profileForm'))}}<!--pointing to controller -->			
+	{{Form::open(array('action' => 'PagesController@ClientFeatureEdit','class'=>'profileForm'))}}<!--pointing to controller -->			
 		<div class="panel panel-info">
 			<div class="panel-heading"><h4>Tools</h4></div>			
 				<ul class="list-group">
@@ -107,6 +107,6 @@
 				{{ Form::hidden('clientID', $client->clientID)}}
 				{{ Form::hidden('groupID',5) }}	
 			</div> 
-		<div>{{Form::submit('Edit Tools',array('class'=>'btn btn-info btn-lg btn-block profileEditBtn'))}}</div>		 		
+		<div>{{Form::submit('Edit Tools',array('class'=>'btn btn-info btn-block profileEditBtn'))}}</div>		 		
 	{{Form::close()}}	
 @stop

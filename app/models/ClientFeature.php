@@ -15,6 +15,6 @@ class ClientFeature extends Eloquent implements UserInterface, RemindableInterfa
 	 * @var string
 	 */
 	protected $table = 'clientFeatures';
-
+	protected $fillable = ['clientID','featureID'];
 
 }

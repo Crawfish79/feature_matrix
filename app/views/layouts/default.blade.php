@@ -48,11 +48,11 @@
 					<li>{{Form::open(array('action' => 'PagesController@groupProfile'))}}{{Form::submit('Tools',array('class'=>'btn btn-block'))}}{{Form::hidden('groupID', '5')}}{{Form::hidden('groupName', 'tools')}}{{Form::close()}}</li>
 					
                 </ul>
-              <li><a href="{{ action('PagesController@create') }}">Create</a></li>
+              <li>{{HTML::linkAction('PagesController@create','Create Site')}}</li>
             </ul>
 		      <form class="navbar-form navbar-right" role="search">
 		        <div class="input-group-btn">
-		          <input type="text" class="form-control" placeholder="Search">
+		          <input type="text" class="form-control" placeholder="Feature Search">
 		        <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button>		          
 		        </div>
 		      </form>
@@ -71,7 +71,7 @@
 	
 	$(document).ready(function() {
 	    $('#siteTable').dataTable( {
-	        "scrollY":        "100px",
+	        "scrollY":        "200px",
 	        "scrollCollapse": true,
 	        "paging":         true
 	    } );

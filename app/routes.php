@@ -16,7 +16,9 @@ Route::get('ClientProfile/{siteName}', 'PagesController@profile');
 Route::post('FeatureGroupProfile','PagesController@groupProfile');
 Route::post('FeatureGroupFeatureDelete','PagesController@groupProfileFeatureDelete');
 Route::post('FeatureGroupFeatureAdd','PagesController@featureGroupFeatureAdd');
-Route::post('ClientFeatureEdit', 'PagesController@profileEditClientFeature');
+Route::post('ClientFeatureEdit', 'PagesController@ClientFeatureEdit');
+Route::post('ClientFeatureUpdate', 'PagesController@ClientFeatureUpdate');
+
 Route::get('/create','PagesController@create');
 Route::post('/create', 'PagesController@saveCreate');
 

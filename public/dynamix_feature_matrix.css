@@ -1,6 +1,6 @@
 body
 		{
-				padding-top:195px;
+				padding-top:15%;
 		}
 
 #logo
@@ -13,12 +13,24 @@ body
 				-moz-box-shadow: 0 0 5px #888;
  				-webkit-box-shadow: 0 0 5px#888;
  				box-shadow: 0 0 5px #888;			
-		}			
+		}	
+		
+.selectionForm
+		{
+				position: relative;
+				float:left;
+				width:60%;
+				padding:5px;
+				-moz-box-shadow: 0 0 5px #888;
+ 				-webkit-box-shadow: 0 0 5px#888;
+ 				box-shadow: 0 0 5px #888;			
+		}
+									
 .profileForm
 		{
 				position: relative;
 				float:left;
-				width:205px;min-height:300px;
+				width:18%;min-height:300px;
 				margin:5px 10px;
 				-moz-box-shadow: 0 0 5px #888;
  				-webkit-box-shadow: 0 0 5px#888;
@@ -33,9 +45,10 @@ body
 .btnLink
 		{
 			
-				width:135px;
+				width:20%;
 				float:right;
 				-moz-box-shadow: 0 0 5px #888;
  				-webkit-box-shadow: 0 0 5px#888;
  				box-shadow: 0 0 5px #888;	
 		}
+

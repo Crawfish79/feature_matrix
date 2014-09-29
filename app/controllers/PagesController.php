@@ -59,7 +59,7 @@ class PagesController extends BaseController {
 				
 	}
 	//edit the clients features for selected group
-	public function profileEditClientFeature()
+	public function ClientFeatureEdit()
 	{	//use clientID and groupID for queries
 		$group = Input::get('group');
 		$siteName = Input::get('siteName');
@@ -75,7 +75,44 @@ class PagesController extends BaseController {
 		
 		return View::make('edit.clientFeatureEdit')->with('featuresOfGroup',$featuresOfGroup)
 												  ->with('clientFeatures_FeatureID',$clientFeatures_FeatureID)
-												  ->with('siteName',$siteName)->with('group',$group);
+												  ->with('siteName',$siteName)->with('group',$group)->with('clientID',$clientID);
+	}
+
+	public function ClientFeatureUpdate(){
+		
+		$clientID = Input::get('clientID');
+		$features = Input::get('features');
+		$prevFeatures = Input::get('prevFeatures');
+		
+
+		if(isset($_POST['features'])){
+			foreach ($features as $feature) {
+								
+					ClientFeature::updateOrCreate(array('clientID'=> $clientID,'featureID'=> $feature));				
+			}
+			
+		}
+							
+		if(isset($_POST['prevFeatures'])){
+			
+			foreach ($prevFeatures as $prevFeature) {
+				
+				if (!(empty($_POST['features']))){
+									
+					if (!(in_array($prevFeature, $features))){						
+						DB::table('clientFeatures')->where('clientID', '=', $clientID) ->where('featureID', '=', $prevFeature)->delete();
+					}
+					
+				}else{
+					
+					DB::table('clientFeatures')->where('clientID', '=', $clientID) ->where('featureID', '=', $prevFeature)->delete();
+					
+				}				
+			}
+		}
+						
+		return View::make('edit.clientFeatureEdit');				
+	
 	}
 	
 	public function groupProfile()
@@ -92,9 +129,9 @@ class PagesController extends BaseController {
 	public function groupProfileFeatureDelete()
 	{
 
-			$featureID = $_POST['featureID'];
-			$featureDelete = DB::table('features')->where('featureID','=',$featureID)->delete();
-			return View::make('profiles.featureGroupProfile')->with('featureID',$featureID);
+		$featureID = $_POST['featureID'];
+		$featureDelete = DB::table('features')->where('featureID','=',$featureID)->delete();
+		return View::make('profiles.featureGroupProfile')->with('featureID',$featureID);
 
 		
 	}
