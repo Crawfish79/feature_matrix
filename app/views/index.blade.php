@@ -20,4 +20,13 @@
 		   </table>
 		</div>
 		</div>
+		<script>	
+		$(document).ready(function() {
+		    $('#siteTable').dataTable( {
+		        "scrollY":        "200px",
+		        "scrollCollapse": true,
+		        "paging":         true
+		    } );
+		} );	
+		</script>
 @stop

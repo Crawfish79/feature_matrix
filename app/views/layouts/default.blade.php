@@ -9,9 +9,15 @@
 	    <!-- Bootstrap -->
 	    <link rel="stylesheet" href="/dynamix_feature_matrix.css">
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-	    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/flick/jquery-ui.css">
+	    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/flick/jquery-ui.css">
 	    <link rel="stylesheet" href="https://cdn.datatables.net/plug-ins/725b2a2115b/integration/jqueryui/dataTables.jqueryui.css">
-	    
+	    <!-- Placed at the end of the document so the pages load faster -->
+
+	    {{ HTML::script("https://code.jquery.com/jquery-1.11.1.js")}}
+	    {{ HTML::script("https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js")}}
+	    {{ HTML::script("https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js")}}
+	    {{ HTML::script("https://cdn.datatables.net/plug-ins/725b2a2115b/integration/jqueryui/dataTables.jqueryui.js")}}
+	    {{ HTML::script("https://code.jquery.com/ui/1.11.1/jquery-ui.js")}}	    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -60,24 +66,10 @@
         </div><!--/.container-fluid -->
       </div>
       <div class='container'>
-	@yield('content')
+      	
+@yield('content')
+
 	  </div>	
-	    <!-- Placed at the end of the document so the pages load faster -->
-    {{ HTML::script("https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")}}
-    {{ HTML::script("https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js")}}
-    {{ HTML::script("https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js")}}
-    {{ HTML::script("https://cdn.datatables.net/plug-ins/725b2a2115b/integration/jqueryui/dataTables.jqueryui.js")}}
-	<script>
-	
-	$(document).ready(function() {
-	    $('#siteTable').dataTable( {
-	        "scrollY":        "200px",
-	        "scrollCollapse": true,
-	        "paging":         true
-	    } );
-	} );
-	
-	</script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     {{ HTML::script('bootstrap-3.2.0-dist/js/ie10-viewport-bug-workaround.js')}}
  	</body>
