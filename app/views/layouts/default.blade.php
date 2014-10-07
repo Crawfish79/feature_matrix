@@ -27,44 +27,44 @@
 
 </head>
 	<body>
-	<div class="navbar navbar-fixed-top navbar-default" role="navigation">
+		
+<!--nav-->
+	<nav class="navbar navbar-fixed-top navbar-default" role="navigation">
 		<div class="nav-header">
 		   <h3 id="logo">{{HTML::image('images/DynamiX-logo.png')}}&nbsp;<small>Feature Matrix</small></h3>
 	    </div> 	
       <!-- Static navbar -->
         <div class="container-fluid bg-info">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-main">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-          <div class="navbar-collapse collapse" id="nav-main">
-            <ul class="nav navbar-nav">
-              <li>{{link_to('/','Home')}}</li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Features<span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-					<li>{{Form::open(array('action' => 'PagesController@groupProfile'))}}{{Form::submit('Forms',array('class'=>'btn btn-block'))}}{{Form::hidden('groupID', '1')}}{{Form::hidden('groupName', 'forms')}}{{Form::close()}}</li>
-					<li>{{Form::open(array('action' => 'PagesController@groupProfile'))}}{{Form::submit('Widgets',array('class'=>'btn btn-block'))}}{{Form::hidden('groupID', '2')}}{{Form::hidden('groupName', 'widgets')}}{{Form::close()}}</li>
-					<li>{{Form::open(array('action' => 'PagesController@groupProfile'))}}{{Form::submit('Gadgets',array('class'=>'btn btn-block'))}}{{Form::hidden('groupID', '3')}}{{Form::hidden('groupName', 'gadgets')}}{{Form::close()}}</li>
-					<li>{{Form::open(array('action' => 'PagesController@groupProfile'))}}{{Form::submit('Maps',array('class'=>'btn btn-block'))}}{{Form::hidden('groupID', '4')}}{{Form::hidden('groupName', 'maps')}}{{Form::close()}}</li>
-					<li>{{Form::open(array('action' => 'PagesController@groupProfile'))}}{{Form::submit('Tools',array('class'=>'btn btn-block'))}}{{Form::hidden('groupID', '5')}}{{Form::hidden('groupName', 'tools')}}{{Form::close()}}</li>
-					
-                </ul>
-              <li>{{HTML::linkAction('PagesController@create','Create Site')}}</li>
-            </ul>
-		      <form class="navbar-form navbar-right" role="search">
-		        <div class="input-group-btn">
-		          <input type="text" class="form-control" placeholder="Feature Search">
-		        <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button>		          
-		        </div>
-		      </form>
-          </div><!--/.nav-collapse -->
+			   <div class="navbar-header">
+			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-main">
+			       <span class="sr-only">Toggle navigation</span>
+			       <span class="icon-bar"></span>
+			       <span class="icon-bar"></span>
+			       <span class="icon-bar"></span>
+			      </button>
+		      </div>
+	          <div class="navbar-collapse collapse" id="nav-main">
+		          <ul class="nav navbar-nav">
+		            <li>{{link_to('/','Home')}}</li>
+		            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Feature Groups<span class="caret"></span></a>
+		                <ul class="dropdown-menu" role="menu">
+		                	<li>{{link_to('/','Create Group')}}</li>
+		                	<li class="divider"></li>
+		                	@foreach ($featureGroups as $featureGroup)
+		                		<li>{{link_to("/GroupProfile/$featureGroup->groupName",$featureGroup->groupName)}}</li>
+							@endforeach
+		
+		                </ul>
+		            </li>
+		            <li>{{HTML::linkAction('ClientSiteController@create','Create Site')}}</li>
+		          </ul>
+			      <form class="navbar-form navbar-right input-group-btn" role="search">
+			        <input type="text" class="form-control" placeholder="Feature Search">
+			        <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button>		          
+			      </form>
+	          </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
-      </div>
+      </nav>
       <div class='container'>
       	
 @yield('content')

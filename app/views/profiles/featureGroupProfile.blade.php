@@ -13,7 +13,7 @@
 		</div>
 	</div>
 	<div class="selectionForm">
-	{{Form::open(array('action' => 'PagesController@groupProfileFeatureDelete'))}}
+	{{Form::open(array('action' => 'FeatureController@featureDelete'))}}
 	<ul class="list-group">	
 		@foreach ($featuresOfGroup as $featureOfGroup)
 			<li class="list-group-item"><h5>							
@@ -43,7 +43,7 @@
 	<div>{{Form::button('Delete Feature',array('name'=>'deleteFeat','class'=>'btn btn-danger btnLink','data-toggle'=>'modal', 'data-target'=>'#myModal'))}}</div>
 	{{Form::close()}}
 	</div>
-	{{Form::open(array('action' => 'PagesController@featureGroupFeatureAdd'))}}
+	{{Form::open(array('action' => 'FeatureController@featureCreate'))}}
 		<div>{{Form::submit('Add New Feature',array('name'=>'addFeat','class'=>'btn btn-info btnLink'))}}</div>
 		{{Form::hidden('groupName', $groupName)}}
 		{{Form::hidden('groupID', $groupID)}}

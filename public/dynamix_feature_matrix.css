@@ -52,3 +52,9 @@ body
  				box-shadow: 0 0 5px #888;	
 		}
 
+#datepicker {
+  text-align: left;
+  background-image: url("images/calendar.png");
+  background-position: right center;
+  background-repeat: no-repeat;
+}

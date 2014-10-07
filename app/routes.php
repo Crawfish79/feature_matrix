@@ -11,14 +11,28 @@
 |
 */
 
-Route::get('/', 'PagesController@home');
-Route::get('ClientProfile/{siteName}', 'PagesController@profile');
-Route::post('FeatureGroupProfile','PagesController@groupProfile');
-Route::post('FeatureGroupFeatureDelete','PagesController@groupProfileFeatureDelete');
-Route::post('FeatureGroupFeatureAdd','PagesController@featureGroupFeatureAdd');
-Route::post('ClientFeatureEdit', 'PagesController@ClientFeatureEdit');
-Route::post('ClientFeatureUpdate', 'PagesController@ClientFeatureUpdate');
+	
+//ClientSite	
+Route::get('/','ClientSiteController@showClients');
+Route::get('ClientProfile/{siteName}','ClientSiteController@clientProfile');
+Route::get('/create','ClientSiteController@create');
+Route::post('/create','ClientSiteController@saveCreate');
 
-Route::get('/create','PagesController@create');
-Route::post('/create', 'PagesController@saveCreate');
+//FeatureGroups
+Route::get('GroupProfile/{groupName}','FeatureGroupController@featureGroupProfile');
 
+//Features
+Route::post('GroupProfile/feature_delete','FeatureController@featureDelete');
+Route::post('GroupProfile/feature_create','FeatureController@featureCreate');
+
+//ClientFeatures
+Route::post('ClientFeatureEdit','ClientFeatureController@clientFeatureEdit');
+Route::post('ClientFeatureUpdate','ClientFeatureController@clientFeatureUpdate');
+
+
+//using view composer to bind featureGroup data to the listed views
+View::composer(['layouts.default','profiles.clientProfiles'], function($view)
+	{
+		$featureGroups = FeatureGroup::all();
+		$view->with('featureGroups',$featureGroups);				
+	});

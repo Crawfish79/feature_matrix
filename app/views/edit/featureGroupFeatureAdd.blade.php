@@ -11,7 +11,7 @@
 		<div class="panel panel-primary">
 			<div class="panel-heading"><h3 class="panel-title">Feature Group: add new feature to {{$groupName}} group</h3></div>
 			<div class="panel-body bg-warning">
-				{{Form::open(array('action' => 'PagesController@featureGroupFeatureAdd','class'=>'form-horizontal', 'role'=>'form'))}}	
+				{{Form::open(array('action' => 'FeatureController@featureCreate','class'=>'form-horizontal', 'role'=>'form'))}}	
 					<div class="form-group">
 						{{Form::label('groupName', 'Group Name:',array('class'=>'col-sm-2 control-label'))}}
 						<div class="col-sm-4"><p class="form-control-static">{{$groupName}}</p></div>
