@@ -28,6 +28,31 @@
 </head>
 	<body>
 		
+		<!-- New Feature Group Modal -->
+			<div class="modal fade" id="newGroupModal" tabindex="-1" role="dialog" aria-labelledby="createGroupLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			        <h4 class="modal-title" id="createGroupLabel">Create New Feature Group</h4>
+			      </div>
+			   {{Form::open(array('action' => 'FeatureGroupController@featureGroupCreate','class' => 'form-horizontal'))}}
+			      <div class="modal-body">			      	
+						<div class="form-group">
+							{{Form::label('groupName','Feature Group:',array('class'=>'control-label col-sm-4','for'=>'groupName'))}}
+							<div class="col-sm-4">{{Form::text('groupName',null,array('class'=>'form-control col-sm-4','required' => 'required'))}}</div>
+						</div>	        		
+			      </div>			      
+			      <div class="modal-footer">
+			        {{Form::button('Cancel',array('name'=>'cancel','class'=>'btn btn-default','data-dismiss'=>'modal'))}}
+			        {{Form::submit('Create Group',array('name'=>'createGroup','class'=>'btn btn-primary'))}}
+			      </div>
+			   {{Form::close()}}
+			      
+			    </div>
+			  </div>
+			</div>
+			
 <!--nav-->
 	<nav class="navbar navbar-fixed-top navbar-default" role="navigation">
 		<div class="nav-header">
@@ -48,10 +73,11 @@
 		            <li>{{link_to('/','Home')}}</li>
 		            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Feature Groups<span class="caret"></span></a>
 		                <ul class="dropdown-menu" role="menu">
-		                	<li>{{link_to('/','Create Group')}}</li>
+		                	<li>{{link_to('#','Create New Group',['data-toggle'=>'modal','data-target'=>'#newGroupModal'])}}</li>
 		                	<li class="divider"></li>
+		                	<li class="dropdown-header">Feature Groups</li>
 		                	@foreach ($featureGroups as $featureGroup)
-		                		<li>{{link_to("/GroupProfile/$featureGroup->groupName",$featureGroup->groupName)}}</li>
+		                		<li class="text-capitalize">{{link_to("/GroupProfile/$featureGroup->groupName",$featureGroup->groupName)}}</li>
 							@endforeach
 		
 		                </ul>

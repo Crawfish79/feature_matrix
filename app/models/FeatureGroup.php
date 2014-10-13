@@ -15,6 +15,7 @@ class FeatureGroup extends Eloquent implements UserInterface, RemindableInterfac
 	 * @var string
 	 */
 	protected $table = 'featureGroups';
+	protected $primaryKey = 'groupID';
 	protected $fillable = ['groupName'];
 
 

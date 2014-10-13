@@ -20,6 +20,7 @@ Route::post('/create','ClientSiteController@saveCreate');
 
 //FeatureGroups
 Route::get('GroupProfile/{groupName}','FeatureGroupController@featureGroupProfile');
+Route::post('FeatureGroup/feature_create','FeatureGroupController@featureGroupCreate');
 
 //Features
 Route::post('GroupProfile/feature_delete','FeatureController@featureDelete');
