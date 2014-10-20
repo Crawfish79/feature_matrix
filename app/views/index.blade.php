@@ -1,7 +1,13 @@
 <!--Home page-->
 @extends('layouts.default')
-
 @section('content')
+
+@if(Session::has('status'))	
+	<div class="alert alert-success">
+	  <p><span class="glyphicon glyphicon-info-sign"></span>&nbsp;{{Session::get('status')}}</p>
+	</div>	
+@endif
+
 		<div class = "panels">
 		<div class="panel panel-primary">
 		  <!-- Default panel contents -->
@@ -23,7 +29,7 @@
 		<script>	
 		$(document).ready(function() {
 		    $('#siteTable').dataTable( {
-		        "scrollY":        "200px",
+		        "scrollY":        "150px",
 		        "scrollCollapse": true,
 		        "paging":         true
 		    } );

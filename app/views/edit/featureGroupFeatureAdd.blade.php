@@ -1,10 +1,15 @@
 @extends('layouts.default')
 @section('content')
 
+@if(Session::has('status'))	
+	<div class="alert alert-success">
+	  <p><span class="glyphicon glyphicon-info-sign"></span>&nbsp;{{Session::get('status')}}</p>
+	</div>	
+@endif
 	<div class = 'panels'>
 		<div class="panel panel-primary">
-			<div class="panel-heading"><h3 class="panel-title">Feature Group: add new feature to {{$groupName}} group</h3></div>
-			<div class="panel-body bg-warning">
+			<div class="panel-heading"><h3 class="panel-title">Add New Feature To <span class="text-capitalize">{{$groupName}}</span> Group</h3></div>
+			<div class="panel-body">
 				
 				{{Form::open(array('action' => 'FeatureController@featureCreate','class'=>'form-horizontal', 'role'=>'form'))}}	
 				

@@ -16,7 +16,7 @@ class CreateFeatureGroupsTable extends Migration {
 		{
 				$table->engine = 'InnoDB';
 				$table->increments('groupID');
-				$table->string('groupName');
+				$table->string('groupName')->unique();
 				$table->timestamps();
 				//
 		});

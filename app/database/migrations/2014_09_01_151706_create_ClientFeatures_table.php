@@ -19,8 +19,8 @@ class CreateClientFeaturesTable extends Migration {
 				$table->integer('featureID')->unsigned();
 				$table->timestamps();
 				$table->primary(array('clientID', 'featureID'));
-				$table->foreign('clientID')->references('clientID')->on('ClientSites')->onUpdate('cascade')->onDelete('cascade');			
-				$table->foreign('featureID')->references('featureID')->on('Features')->onUpdate('cascade')->onDelete('cascade');					
+				$table->foreign('clientID')->references('clientID')->on('ClientSites')->onUpdate('cascade');			
+				$table->foreign('featureID')->references('featureID')->on('Features')->onUpdate('cascade');					
 			//
 		});
 	}
