@@ -16,5 +16,6 @@ class ClientSite extends Eloquent implements UserInterface, RemindableInterface 
 	 */
 	protected $table = 'clientSites';
 	protected $fillable = ['siteName','description','launchDate'];
+	protected $primaryKey = 'clientID';
 
 }
