@@ -17,6 +17,17 @@ Route::get('/','ClientSiteController@showClients');
 Route::get('/ClientProfile/{siteName}','ClientSiteController@clientProfile');
 Route::get('/create','ClientSiteController@create');
 Route::post('/create','ClientSiteController@saveCreate');
+Route::model('clientsite', 'ClientSite');
+Route::get('/','ClientSiteController@showClients');
+Route::get('/create','ClientSiteController@create');
+Route::get('/edit/{clientsite}','ClientSiteController@edit');
+Route::post('/edit', 'ClientSiteController@doEdit');
+Route::get('/delete/{clientsite}','ClientSiteController@delete');
+Route::post('/delete', 'ClientSiteController@doDelete');
+// listen for when we POST to the create page and then call saveCreate action in the ClientSitessController to handle the form.
+Route::post('/create', 'ClientSiteController@saveCreate');
+Route::get('clientsite/{clientID}', 'ClientSiteController@show')->where('clientID', '\d+');
+
 
 //FeatureGroups
 Route::get('/GroupProfile/{groupName}','FeatureGroupController@featureGroupProfile');
