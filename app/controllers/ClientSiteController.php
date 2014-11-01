@@ -49,16 +49,7 @@ return View::make('profiles.clientProfiles')->with('client',$client)
             
             return Redirect::action('ClientSiteController@showClients');
          }
-         public function delete(Clientsite $clientsite)
-         {
-                return View::make('edit.delete', compact('clientsite'));
-         }
-         public function doDelete()
-         {
-            $clientsite = Clientsite::findOrFail(Input::get('clientID'));
-            $clientsite->delete();
-            return Redirect::action('ClientSiteController@showClients');
-         }
+        
          public function saveCreate()
          {
                 $input = Input::all();
