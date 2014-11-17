@@ -1,34 +1,40 @@
 @extends('layouts.default')
 @section('content')
-@if(isset($_POST['submit']))
-	<div class="col-sm-4 alert alert-success form-group has-success has-feedback">
-	  <label class="control-label"><h3><span class="glyphicon glyphicon-ok"></span>&nbsp;client features have been updated succesfully</h3></label>
-	</div>	
-@else
-	<div class="panel panel-primary">
-		<div class="panel-heading panels"><h3 class="panel-title">{{$siteName}} Feature Edit: {{$group}} update</h3></div>
-	</div>
-	<div class="selectionForm">
-		{{Form::open(array('action' => 'ClientFeatureController@clientFeatureUpdate'))}}
-			<ul class="list-group">
-				@foreach ($featuresOfGroup as $featureOfGroup)
-					@if((in_array($featureOfGroup->featureID, $clientFeatures_FeatureID)))
-						<li class="list-group-item"><h5>							
-						{{Form::checkbox('features[]', $featureOfGroup->featureID,true)}}
-						{{Form::label($featureOfGroup->featureName,$featureOfGroup->featureName, array('class'=>'text-info'))}}<br>
-						{{ Form::hidden('prevFeatures[]',$featureOfGroup->featureID) }}					
-						</h5></li>	
-					@else
-						<li class="list-group-item"><h5>
-						{{Form::checkbox('features[]', $featureOfGroup->featureID)}}
-						{{Form::label($featureOfGroup->featureName,$featureOfGroup->featureName)}}<br>
-						</h5></li>
-					@endif
-				@endforeach
-			</ul>
-		<div>{{Form::submit('Update '.$group,array('name'=>'submit','class'=>'btn btn-info btnLink'))}}</div>
-		{{ Form::hidden('clientID', $clientID)}}		
-		{{Form::close()}}
-	</div>
-	@endif
+		<div class="well well-sm">
+				<h3>{{$siteName}}<small>&nbsp;{{$group}} update</small></h3>
+		</div>
+		
+		<div class = 'panel panel-default'>
+			<div class="panel-body">
+				{{Form::open(array('action' => 'ClientFeatureController@clientFeatureUpdate','class'=>'form-group'))}}
+					<div class="row">
+						@foreach ($featuresOfGroup as $featureOfGroup)
+							@if(in_array($featureOfGroup->featureID, $clientFeatures_FeatureID))
+								@foreach($clientFeatures as $clientFeature)
+									@if($featureOfGroup->featureID == $clientFeature->featureID)
+										<div class="col-md-3">
+											{{Form::checkbox('features[]', $featureOfGroup->featureID,true,array('class'=>'cf-check'))}}
+											{{$featureOfGroup->featureName}}
+											<div class="cf-note">{{Form::textarea('features[]',$clientFeature->clientFeatureNote,array('class'=>'form-control','style' =>'height:60px'))}}</div>						
+											{{ Form::hidden('prevFeatures[]',$featureOfGroup->featureID) }}					
+										</div>
+									@endif
+								@endforeach	
+							@else
+								<div class="col-md-3">
+									{{Form::checkbox('features[]', $featureOfGroup->featureID,false,array('class'=>'cf-check'))}}
+									{{$featureOfGroup->featureName}}
+									<div class="cf-note">{{Form::textarea('features[]',null,array('class'=>'form-control','placeholder'=>'Add Notes...','style' =>'height:60px'))}}</div>
+								</div>
+							@endif
+						@endforeach
+					</div>
+					<hr class = 'border'/>
+					<div>{{Form::submit('Update '.$group,array('name'=>'submit','class'=>'btn btn-info btn-block'))}}</div>
+					{{ Form::hidden('clientID', $clientID)}}
+					{{ Form::hidden('siteName', $siteName)}}		
+				{{Form::close()}}
+			</div>
+		</div>	
+
 @stop

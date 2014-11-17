@@ -17,10 +17,11 @@ class CreateClientFeaturesTable extends Migration {
 				$table->engine = 'InnoDB';
 				$table->integer('clientID')->unsigned();
 				$table->integer('featureID')->unsigned();
+				$table->Text('clientFeatureNote')->nullable();
 				$table->timestamps();
 				$table->primary(array('clientID', 'featureID'));
-				$table->foreign('clientID')->references('clientID')->on('ClientSites')->onUpdate('cascade');			
-				$table->foreign('featureID')->references('featureID')->on('Features')->onUpdate('cascade');					
+				$table->foreign('clientID')->references('clientID')->on('ClientSites');			
+				$table->foreign('featureID')->references('featureID')->on('Features');					
 			//
 		});
 	}

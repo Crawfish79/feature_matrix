@@ -10,15 +10,15 @@ class ClientFeatureController extends BaseController {
 		$clientID = Input::get('clientID');
 		$groupID = Input::get('groupID');
 		//queries for checking featureID values of 'clientFeatures' against 'features' to determine if checkbox is true or not
-		
 		//get all features from a particular group		
-		$featuresOfGroup = DB::table('features')->where('groupID', '=', $groupID )->get();
+		$featuresOfGroup = Feature::where('groupID', '=', $groupID )->orderBy('featureName')->get();
 		//get all features from a particular client -place featureID's in an array
-		$clientFeatures = DB::table('clientFeatures')->where('clientID', '=', $clientID)->get();
+		$clientFeatures = ClientFeature::where('clientID', '=', $clientID)->get();
 		$clientFeatures_FeatureID = array_pluck($clientFeatures,'featureID');
 		
 		return View::make('edit.clientFeatureEdit')->with('featuresOfGroup',$featuresOfGroup)
 												  ->with('clientFeatures_FeatureID',$clientFeatures_FeatureID)
+												  ->with('clientFeatures',$clientFeatures)
 												  ->with('siteName',$siteName)->with('group',$group)->with('clientID',$clientID);
 	}
 
@@ -29,35 +29,50 @@ class ClientFeatureController extends BaseController {
 		$clientID = Input::get('clientID');
 		$features = Input::get('features');
 		$prevFeatures = Input::get('prevFeatures');
-		
-
-		if(isset($_POST['features'])){
-			foreach ($features as $feature) {
-								
-					ClientFeature::updateOrCreate(array('clientID'=> $clientID,'featureID'=> $feature));				
-			}
+		$siteName = Input::get('siteName');
 			
-		}
-							
-		if(isset($_POST['prevFeatures'])){
+		//features array check-array of feature ids(checkbox's) and textarea input
+		if(!(empty($_POST['features']))){
+			
+			for($i=0;$i < count($features);$i++) {
+				//if feature id(checkbox) is first.. do update. textarea input follows checkbox input
+				if (is_numeric($features[$i]))	{
+					
+					ClientFeature::updateOrCreate(array('clientID'=> $clientID,'featureID'=> $features[$i]));
+					
+					$i++;
+					
+					ClientFeature::where('clientID','=', $clientID)
+								->where('featureID','=', $features[$i-1])
+								->update(array('clientFeatureNote'=> $features[$i]));
+
+			    }//endif
+			}//endfor			
+		}//endif
+		
+		//checking initial features(array) before delete					
+		if(!(empty($_POST['prevFeatures']))){
 			
 			foreach ($prevFeatures as $prevFeature) {
-				
+				//checking if previous features are in new feature set.. if not delete the feature
 				if (!(empty($_POST['features']))){
 									
 					if (!(in_array($prevFeature, $features))){						
-						DB::table('clientFeatures')->where('clientID', '=', $clientID) ->where('featureID', '=', $prevFeature)->delete();
-					}
+						ClientFeature::where('clientID', '=', $clientID) ->where('featureID', '=', $prevFeature)->delete();
+					}//endif
 					
-				}else{
+				}
+				
+				else{
+					//delete client feature if no checkboxes checked
+					ClientFeature::where('clientID', '=', $clientID) ->where('featureID', '=', $prevFeature)->delete();
 					
-					DB::table('clientFeatures')->where('clientID', '=', $clientID) ->where('featureID', '=', $prevFeature)->delete();
-					
-				}				
-			}
-		}
+				}//endif				
+			}//end foreach
+		}//endif
 						
-		return View::make('edit.clientFeatureEdit');				
+		return Redirect::action('ClientSiteController@clientProfile', array($siteName))
+		->with('status','<strong>'.$siteName.'</strong> features updated successfully!');				
 	
 	}
 	

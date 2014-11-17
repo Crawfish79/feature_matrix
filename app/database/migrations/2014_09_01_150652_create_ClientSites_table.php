@@ -16,7 +16,7 @@ class CreateClientSitesTable extends Migration {
 		{
 				$table->engine = 'InnoDB';
 				$table->increments('clientID');
-				$table->string('siteName');
+				$table->string('siteName')->unique();
 				$table->Date('launchDate');
 				$table->Text('description')->nullable();
 				$table->timestamps();

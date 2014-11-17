@@ -18,6 +18,7 @@ class CreateFeatureGroupsTable extends Migration {
 				$table->increments('groupID');
 				$table->string('groupName')->unique();
 				$table->timestamps();
+				$table->softDeletes();
 				//
 		});
 	}

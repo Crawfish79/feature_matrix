@@ -6,7 +6,7 @@ class FeatureGroupController extends BaseController {
 	{
 		$group = FeatureGroup::whereGroupname($groupName)->first();			
 		$groupID = $group['groupID'];
-		$featuresOfGroup = DB::table('features')->where('groupID','=', $groupID )->get();
+		$featuresOfGroup = Feature::where('groupID','=', $groupID )->get();
 		if(Session::has('status'))
 		{
 			return View::make('profiles.featureGroupProfile')		
@@ -54,20 +54,22 @@ class FeatureGroupController extends BaseController {
 		$groupName = Input::get('groupName');	
 		$groupID = Input::get('groupID');
 		
-		try
-		{		 
-			$featureGroupDelete = DB::table('featureGroups')->where('groupID','=',$groupID)->delete();
-		
-			return Redirect::action('ClientSiteController@showClients')
-		    ->with('status','<strong>'.$groupName.' group has been removed successfully!</strong>');				
-		}
-
-		catch (\Illuminate\Database\QueryException $e) 
+		$features = Feature::where('groupID','=',$groupID)->count();
+		if ($features > 0)
 		{
 			return Redirect::back()
 			->withInput()	
 			->with('status','<strong>'.$groupName.' group has dependencies!..</strong> associated features must be removed first.');
 		}
+
+		else
+		{		 
+			$featureGroupDelete = FeatureGroup::where('groupID','=',$groupID)->delete();
+		
+			return Redirect::action('ClientSiteController@showClients')
+		    ->with('status','<strong>'.$groupName.' group has been removed successfully!</strong>');				
+		}
+
 	}
 }
 

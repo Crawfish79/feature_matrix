@@ -11,8 +11,10 @@ class FeatureController extends BaseController {
 		if(isset($_POST['createFeat']))
 		{
 			$featureName = Input::get('featureName');
+			$featureNote = Input::get('featureNote');
 			
-		    $validator = Validator::make(['featureName' => $featureName],['featureName' => 'required|min:3']);
+		    $validator = Validator::make(['featureName' => $featureName,'featureNote' => $featureNote],
+		    							 ['featureName' => 'required|min:3','featureNote' => 'required']);
 			
 			if ($validator->fails())
 			{
@@ -27,7 +29,7 @@ class FeatureController extends BaseController {
 				try
 				{				
 					$featureCreate = DB::table('features')
-					->insertGetId(array('groupID' => $groupID, 'featureName' => $featureName));
+					->insertGetId(array('groupID' => $groupID, 'featureName' => $featureName,'featureNote' => $featureNote));
 					
 					return Redirect::action('FeatureGroupController@featureGroupProfile', array($groupName))
 				    ->with('status','<strong>'.$featureName.'</strong> created successfully!');
@@ -59,20 +61,64 @@ class FeatureController extends BaseController {
 		$featureID = Input::get('featureID');
 		$featureName = Input::get('featureName');
 
-		try
-		{
-		$featureDelete = DB::table('features')->where('featureID','=',$featureID)->delete();
+		$clientFeatures = ClientFeature::where('featureID','=',$featureID)->count();
 		
-			return Redirect::action('FeatureGroupController@featureGroupProfile', array($groupName))
-			->with('status','<strong>'.$groupName.' feature deleted successfully!</strong>');
-		}
-		
-		catch (\Illuminate\Database\QueryException $e) 
+		if ($clientFeatures > 0)
 		{
 			return Redirect::back()
 			->withInput()	
-			->with('status','<strong>This '.$groupName.' feature has dependencies!..</strong> associated client features must be removed first');
+			->with('status','<strong>This '.$groupName.' feature has dependencies!..</strong> associated client features must be removed first');		
+		}
+		
+		else 
+		{
+			$featureDelete = Feature::where('featureID','=',$featureID)->delete();			
+			
+			return Redirect::action('FeatureGroupController@featureGroupProfile', array($groupName))
+			->with('status','<strong>'.$groupName.' feature deleted successfully!</strong>');
 		}
 	}
+	//search for a feature.. returns clients and feature notes for clients
+	public function featureSearch()
+	{
+		$searchTerm = Input::get('searchTerm');
 
+		$validator = Validator::make(['searchTerm' => $searchTerm],['searchTerm' => 'required']);
+			
+		if ($validator->fails())
+		{
+			return Redirect::to('/');
+		}
+		
+		else
+		{	//copy features table into a temporary table for fulltext search
+			$featuresTemp = DB::insert(DB::raw( 
+												'CREATE TEMPORARY TABLE featuresTemp
+									 			(PRIMARY KEY (featureID), FULLTEXT (featureName))ENGINE=MyISAM 
+									 			AS(SELECT * FROM features)')
+											   );
+			//												
+			$results = DB::table('clientFeatures')
+			->join('clientSites', 'clientSites.clientID', '=', 'clientFeatures.clientID')
+	        ->join('featuresTemp', 'featuresTemp.featureID', '=', 'clientFeatures.featureID')
+	        ->select('featuresTemp.featureName', 'clientSites.siteName', 'clientFeatures.clientFeatureNote')
+			
+			->whereRaw( 
+						"MATCH(featuresTemp.featureName) AGAINST(concat('+',?,'*') IN BOOLEAN MODE)",  
+						array($searchTerm)
+					  )		
+					  	
+			->where('featuresTemp.deleted_at', '=', NULL);
+			
+			$resultsCount = $results->count();
+			$results = $results->paginate(10);	
+				            	
+			return View::make('profiles.featureSearch')
+			->with('results',$results)
+			->with('resultsCount',$resultsCount)
+			->with('searchTerm',$searchTerm);
+		}
+
+
+	}
 }

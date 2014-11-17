@@ -18,7 +18,9 @@ class CreateFeaturesTable extends Migration {
 				$table->increments('featureID');
 				$table->integer('groupID')->unsigned();
 				$table->string('featureName')->unique();
+				$table->Text('featureNote');
 				$table->timestamps();
+				$table->softDeletes();
 				$table->foreign('groupID')->references('groupID')->on('FeatureGroups')->onUpdate('cascade');			
 				//
 		});
