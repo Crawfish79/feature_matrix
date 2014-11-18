@@ -18,7 +18,7 @@ class SessionsController extends BaseController {
 	public function store()
 	{
 		$rules = array(
-			'userName'    => 'required|min:5', 
+			'email'=>'required|email', 
 			'password'=>'required|alphaNum|between:6,12'
 		);
 
@@ -34,7 +34,7 @@ class SessionsController extends BaseController {
 
 			// create our user data for the authentication
 			$userdata = array(
-				'userName' 	=> Input::get('userName'),
+				'email' 	=> Input::get('email'),
 				'password' 	=> Input::get('password')
 			);
 
@@ -45,7 +45,7 @@ class SessionsController extends BaseController {
 
 			} else {	 	
 
-				return Redirect::back()->withInput()->with('message', 'Your user name and/or password was incorrect.');
+				return Redirect::back()->withInput()->with('message', 'Your email and/or password was incorrect.');
 
 			}
 

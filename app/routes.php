@@ -15,6 +15,10 @@
 Route::get('/login','SessionsController@create');
 Route::get('/logout','SessionsController@destroy');
 Route::resource('sessions','SessionsController');
+
+//password reminder
+Route::controller('password','RemindersController');
+
 //check if user is authorized before routing
 Route::group(array('before' => 'auth'), function() 
 {

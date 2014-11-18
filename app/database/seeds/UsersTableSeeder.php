@@ -9,6 +9,7 @@
 		//create users
 		User::create(array(
 			'userName' => 'dynamix',
+			'email' => 'rocraw79@hotmail.com',
 			'password' => Hash::make('abcd1234')
 		));
 		      	

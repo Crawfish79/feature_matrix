@@ -23,12 +23,12 @@
 	{{ Form::open(array('route' => 'sessions.store','class'=>'form-signin','role'=>'form')) }}
 			<div class ='row'>
 				<div class ="col-md-4">
-					{{ Form::text('userName', Input::old('userName'),array('class'=>'form-control','placeholder'=>'| username')) }}
-					<span class="glyphicon glyphicon-user"></span>
+					{{ Form::text('email', Input::old('email'),array('class'=>'form-control','placeholder'=>'  myemail@mail.com')) }}
+					<span class="glyphicon glyphicon-envelope"></span>
 				</div>
 		
 				<div class ="col-md-4">
-					{{ Form::password('password',array('class'=>'form-control','placeholder'=>'| password')) }}
+					{{ Form::password('password',array('class'=>'form-control','placeholder'=>'  password')) }}
 					<span class="glyphicon glyphicon-lock"></span>
 				</div>
 
@@ -37,22 +37,25 @@
 				</div>
 				
 				@if(Session::has('message'))	
-					<div class="col-md-12">
+					<div class="col-md-12"style = "height:25px">
 					  <p class="text-danger"><span class="glyphicon glyphicon-warning-sign"></span>&nbsp;<i>{{Session::get('message')}}</i></p>
 					</div>	
 				@else
 				
-					<div class ="col-md-4">
-						<div class="text-danger"><i>{{ $errors->first('userName') }}</i></div>
+					<div class ="col-md-4"style = "height:25px">
+						<div class="text-danger"><i>{{ $errors->first('email') }}</i></div>
 					</div>	
 						
-					<div class ="col-md-4">
+					<div class ="col-md-4"style = "height:25px">
 						<div class="text-danger"><i>{{ $errors->first('password') }}</i></div>
 					</div>
 				
-				@endif							
+				@endif	
+					<div class="col-md-12">
+					  <a><span class="glyphicon glyphicon-lock"></span>&nbsp;reset password</a>
+					</div>					
 			</div>
-			<div style = "height:60px"style = "border:1px solid #000"></div>
+			<div style = "height:60px"></div>
 	{{ Form::close() }}
 </div>	
 
