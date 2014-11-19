@@ -52,7 +52,7 @@
 				
 				@endif	
 					<div class="col-md-12">
-					  <a><span class="glyphicon glyphicon-lock"></span>&nbsp;reset password</a>
+						{{link_to('password/remind', 'forgot password?',array('class'=>'text-muted pull-right', 'target'=>'_blank'))}}
 					</div>					
 			</div>
 			<div style = "height:60px"></div>
@@ -60,5 +60,6 @@
 </div>	
 
 	@include('partials.footer')
-
+	
+</body>
 </html>

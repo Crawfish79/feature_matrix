@@ -17,19 +17,21 @@
 	    
 	    <div="row">
 	   	    <div class="form-group col-md-4">
-	            {{ Form::label('email', 'Email Address:',array('class'=>'control-label','style'=>'height:25px;')) }}
+	            {{ Form::label('email', 'Email Address',array('class'=>'control-label','style'=>'height:25px;')) }}
 	            {{ Form::email('email','',array('class'=>'form-control','placeholder'=>'myemail@mail.com')) }}
 	        </div>
 	
 	        <div class="form-group col-md-10">
 	            {{ Form::submit('Reset',array('class'=>'btn btn-info')) }}
 	        </div>
-	        <div class="form-group col-md-10">
+	        <div class="form-group col-md-12">
+	        
 		    @if (Session::has('error'))
 		        <p style="color: red;">{{ Session::get('error') }}</p>
 		    @elseif (Session::has('status'))
 		        <p>{{ Session::get('status') }}</p>
 		    @endif
+		    
 		    </div>	        
 	     </div>
 	    {{ Form::close() }}

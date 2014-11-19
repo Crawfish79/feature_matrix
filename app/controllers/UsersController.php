@@ -13,8 +13,8 @@ class UsersController extends BaseController {
 		$rules = array(
 			'userName'=> 'required|min:5', 
 			'email'=>'required|email',
-		    'password'=>'required|alphaNum|between:6,12|confirmed',
-		    'password_confirmation'=>'required|alphaNum|between:6,12'
+		    'password'=>'required|alphaNum|between:8,32|confirmed',
+		    'password_confirmation'=>'required|alphaNum|between:8,32'
 		);	
 	
 		$validator = Validator::make(Input::all(),$rules);

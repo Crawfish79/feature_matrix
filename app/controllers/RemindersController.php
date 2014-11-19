@@ -52,6 +52,11 @@ class RemindersController extends Controller {
 		$credentials = Input::only(
 			'email', 'password', 'password_confirmation', 'token'
 		);
+		
+		Password::validator(function($credentials)
+		{
+		    return strlen($credentials['password']) >= 8;
+		});
 
 		$response = Password::reset($credentials, function($user, $password)
 		{

@@ -19,7 +19,7 @@ class SessionsController extends BaseController {
 	{
 		$rules = array(
 			'email'=>'required|email', 
-			'password'=>'required|alphaNum|between:6,12'
+			'password'=>'required|alphaNum|between:8,32'
 		);
 
 		// run the validation rules on the inputs from the form
