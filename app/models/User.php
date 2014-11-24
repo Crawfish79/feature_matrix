@@ -1,4 +1,3 @@
-
 <?php
 use Illuminate\Auth\UserTrait;
 use Illuminate\Auth\UserInterface;
@@ -13,4 +12,4 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	protected $hidden = array('password', 'remember_token');
 
 }
-// the extra space may be harmful if your enviroment is up to date and you are running a mac for this 
+// Removed extra space at the top
