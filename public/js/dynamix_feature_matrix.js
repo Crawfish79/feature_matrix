@@ -1,21 +1,34 @@
 $(document).ready(function($){	
 	//scroll spy for clientProfile view
-	var offset = 95;
-	$('#spy-pos-fixed li a').click(function(event) {
-		
-		event.preventDefault();
-		$($(this).attr('href'))[0].scrollIntoView();
-		scrollBy(0, -offset);		
-		});//end scroll spy
+	var offsetHeight = 70;
+
+	$('#sidebar-menu ul.tab-menu li a').click(function(event) {
+    	var scrollPos = $('body > .container').find($(this).attr('href')).offset().top - offsetHeight;
+    	$('body,html').animate({
+        	scrollTop: scrollPos
+    	},250);
+    return false;
+	});
 		
 	//datatable for index page	
 	$('#siteTable').dataTable( {
-		"scrollY":        "200px",
-		"scrollCollapse": true,
-		"paging":         true
-		})
-		.removeClass( 'display' )
-		.addClass('table table-striped table-hover');
+		"paging":         true,
+		"lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
+		"dom": "<'row'"+
+				"<'col-md-6'l><'col-md-6'f>\n"+
+				"<'clearfix'>\n"+
+				"<'col-md-6'i><'col-md-6'p>\n"+
+				"<'clearfix'>"+
+				"<'col-md-12'<'border2'>>\n"+
+				"<'clearfix'>\n"+
+				"<'col-md-12'rt>\n"+
+				"<'clearfix'>"+
+				"<'col-md-12'<'border2'>>\n"+
+				"<'clearfix'>"+
+				"<'col-md-6'i><'col-md-6'p>\n"+
+				"<'clearfix'>"+
+				">"
+		});
 		//end datatable
 		
 	//clientFeatureEdit-checbox to textarea display

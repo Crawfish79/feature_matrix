@@ -6,12 +6,25 @@
 			        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 			        <h4 class="modal-title" id="createGroupLabel">Create New Feature Group</h4>
 			      </div>
-			   {{Form::open(array('action' => 'FeatureGroupController@featureGroupCreate','class' => 'form-horizontal'))}}
-			      <div class="modal-body">			      	
-						<div class="form-group">
-							{{Form::label('groupName','Feature Group:',array('class'=>'control-label col-sm-4','for'=>'groupName'))}}
-							<div class="col-sm-4">{{Form::text('groupName',null,array('class'=>'form-control col-sm-4','required' => 'required'))}}</div>
+			   {{Form::open(array('action' => 'FeatureGroupController@featureGroupCreate','id'=>'groupForm','class' => 'form-horizontal', 'method'=>'post', 'role'=>'form'))}}
+			      <div class="modal-body">
+			      	          <div class="alert alert-danger"id="group_alert" role="alert" style="display: none">
+              <ul></ul>
+          </div>
+			      	
+			      	    <div class="row">
+							<div class="form-group">
+								<div class="col-sm-4">{{Form::label('groupName','Feature Group:',array('class'=>'control-label pull-right','for'=>'groupName'))}}</div>
+								<div class="col-sm-4">{{Form::text('groupName',null,array(
+																							'id'=>'groupName',
+																							'class'=>'form-control',
+																							'required','pattern'=>'^.{3,14}$',
+																							'title'=>'unique group name and min:3/max:14 characters required'
+																							))}}
+							</div>
+							<div class="col-sm-3"><small><i>*format requires unique name and min:3/max:14 characters</i></small></div>
 						</div>	        		
+			      	</div>
 			      </div>			      
 			      <div class="modal-footer">
 			        {{Form::button('Cancel',array('name'=>'cancel','class'=>'btn btn-default','data-dismiss'=>'modal'))}}
@@ -67,11 +80,14 @@
 		            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> {{Auth::user()->userName}}<span class="caret"></span></a>
 		                <ul class="dropdown-menu" role="menu">
 		                	<li>{{link_to('/users/create','Add New User')}}</li>
+		                	<li>{{link_to_action('UsersController@userList','Users List')}}</li>
 		                	<li class="divider"></li>
+		                	<li class="dropdown-header">My Actions</li>
+		                	<li>{{link_to_action('UsersController@userProfileEdit','Edit Profile')}}</li>		                	
 		                	<li>{{link_to('/logout','Sign Out')}}</li>		
 		                </ul>
 		            </li>
-		            <li><a href="#"><span class="glyphicon glyphicon-question-sign"></span></a></li>
+		            <li><a href = "{{ URL::to('app_instructions/content/DynamiX Feature Matrix.html') }}" target="_blank"><span class="glyphicon glyphicon-question-sign"></a></span></li>
 		          </ul>			      
 	          </div><!--/.nav-collapse -->
         	</div><!--/.container-fluid -->

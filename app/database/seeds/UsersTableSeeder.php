@@ -8,8 +8,8 @@
 	 	DB::table('Users')->delete();
 		//create users
 		User::create(array(
-			'userName' => 'dynamix',
-			'email' => 'rocraw79@hotmail.com',
+			'userName' => 'dynamix_Admin',
+			'email' => 'rocraw79@gmail.com',
 			'password' => Hash::make('abcd1234')
 		));
 		      	

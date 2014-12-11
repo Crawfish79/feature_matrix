@@ -11,7 +11,7 @@
 
 	    {{ HTML::script("http://code.jquery.com/jquery-1.11.1.js")}}
 	    {{ HTML::script("http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js")}}
-	    {{ HTML::script("http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js")}}
+	    {{ HTML::script("http://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js")}}
 	    {{ HTML::script("http://cdn.datatables.net/plug-ins/380cb78f450/integration/bootstrap/3/dataTables.bootstrap.js")}}
 	    {{ HTML::script("http://code.jquery.com/ui/1.11.1/jquery-ui.js")}}	    
     <!--[if lt IE 9]>

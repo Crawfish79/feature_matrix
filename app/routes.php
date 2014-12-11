@@ -25,7 +25,9 @@ Route::group(array('before' => 'auth'), function()
 	//User
 	Route::get('users/create','UsersController@register');
 	Route::post('users/create','UsersController@create');
-	
+	Route::get('users/list','UsersController@userList');
+	Route::get('users/edit','UsersController@userProfileEdit');	
+		
 	//ClientSite	
 	Route::get('/','ClientSiteController@showClients');
 	Route::get('/ClientProfile/{siteName}','ClientSiteController@clientProfile');
@@ -52,7 +54,7 @@ Route::group(array('before' => 'auth'), function()
 //using view composer to bind featureGroup data to the listed views
 View::composer(['layouts.default','profiles.clientProfiles'], function($view)
 	{
-		$featureGroups = FeatureGroup::all();
+		$featureGroups = FeatureGroup::orderBy('groupName')->get();
 		$view->with('featureGroups',$featureGroups);				
 	});
 

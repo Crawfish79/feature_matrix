@@ -1,18 +1,13 @@
+/*_________________________________________________
+html,body,main containers for nav and inner body
+_________________________________________________*/
+
 html,body
 		{
 				height:100%;
 				background-color: #eee;
 		}
 
-
-#logo
-		{		
-				padding: 5px 10px;
-				width:175px;
-				height:50px;
-				margin-top: -15px;	
-		}
-		
 .main-container
 		{
 				min-height:100%;
@@ -20,20 +15,83 @@ html,body
 			  	-webkit-box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.05);  
 			  	-moz-box-shadow:    0px 0px 2px 2px rgba(0, 0, 0, 0.05);  
 			  	box-shadow:         0px 0px 2px 2px rgba(0, 0, 0, 0.05);    
-			    padding:60px 25px 40px 25px;  
+			    padding:70px 25px 40px 25px;  
 			    margin-bottom: 0;
 			    background-color: rgba(255, 255, 255, 0.7);
 			    border:none;
   		}  		
-  		
+ 
 .main-container-fluid
 		{  
 				-webkit-box-shadow: 0 7px 6px -4px rgba(0, 0, 0, 0.1);
      			-moz-box-shadow: 0 7px 6px -4px rgba(0, 0, 0, 0.1);
           		box-shadow: 0 7px 6px -4px rgba(0, 0, 0, 0.1);
-          		background-color:#5bc0de;
-        }
-        
+          		background-color:#428bca;
+        } 
+/*__________________________________________        
+scrollspy styling for client profile page
+__________________________________________*/
+
+#sidebar-menu ul.tab-menu 
+		{
+		    list-style-type: none;
+			padding: 0;
+			padding-bottom:5px;
+			border-bottom:5px solid #eee;
+			white-space: nowrap;
+    		overflow: hidden;
+    		-o-text-overflow: ellipsis;
+    		text-overflow: ellipsis; 
+		}
+
+#sidebar-menu ul.tab-menu a 
+		{
+		    display: block;
+			font-size: 13px;
+			font-weight: 500;
+			color: #999;
+			padding: 4px 20px;
+		}
+
+#sidebar-menu ul.tab-menu a:hover 
+		{
+			color: #11427D;
+			text-decoration: none;
+			background-color: transparent;
+			border-right: 2px solid #428bca;
+		}
+
+
+#sidebar-menu ul.tab-menu li.active a, #sidebar-menu ul.tab-menu li.active a:hover
+		{
+			color: #428bca;
+			text-decoration: none;
+			background-color: transparent;
+			border-right: 2px solid #428bca;
+		}
+
+#sidebar-menu ul.tab-menu.affix 
+		{
+			top: 75px;
+		}
+/*___________________________________________
+styling for textarea in client feature edit 
+___________________________________________*/
+		
+.form-group textarea
+		{
+			height:60px;
+		}
+
+.cf-note
+		{
+			display:none;
+		}
+				
+/*_________________
+different borders 
+_________________*/ 
+       
 .dl-left-border 
 		{
 			  background:none;
@@ -50,49 +108,16 @@ html,body
 			  padding-bottom: 0.5em 10px;
 		}
 		
-#spy-pos-fixed 
+.border2 
 		{
-		    position: fixed;
-		    top: 60px;
-		    left: 0;
-		}		
-
-			
-ul#spy-pos-fixed li a
-		{
-			  text-decoration:none;
-			  color:#777;	
-			  font-weight:400;
-			  background: #f9f9f9;
-			  border:none;
-	          border-right:4px #fff solid;
-	          text-align:center;			
-  		}
-		 		
-ul#spy-pos-fixed li a:hover   
-		{
-			  text-decoration:none;	
-			  color:#fff;
-			  background:#5bc0de;
-			  border:none;
-			  border-right:4px #777 solid;
-		}
-
-ul#spy-pos-fixed li a:active   
-		{
-			  text-decoration:none;
-			  color:fff;
-			  background:none;
-			  background:#000;
+			  border-top: 2px dotted #E0E0E0;
+			  padding-bottom: 0.5em 10px;margin-bottom:10px;
 		}
 		
-
 		
-.profileEditBtn
-		{
-				position: absolute;
-				bottom:0;
-		}
+/*____________________
+search for main-nav
+____________________*/
 
 .searchdiv
 		{
@@ -110,27 +135,27 @@ ul#spy-pos-fixed li a:active
   				-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   				box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 		}	
-		
+/*________
+buttons 
+________*/	
+	
 .btnLink
 		{
 				margin:1%;
 				float:left;	
 		}
 
-	
-.hr
+
+.profileEditBtn
 		{
-				height:3px;
-				border-width:0;
-				color:#00FFFF;
-				background-color:#00FFFF;
-				width: 100%;	
-		}
+				position: absolute;
+				bottom:0;
+		}		
 		
-.panel
-		{
-				border:none;
-		} 
+
+/*_______________________________________________
+column stuff.. including clearfix for col-mg-3,4
+_______________________________________________*/
 				
 .col-md-3
 		{
@@ -153,50 +178,94 @@ ul#spy-pos-fixed li a:active
 	  	{
 	    		clear: left;
 	  	}
-
-
-.well
-{
-	border:none;
-	border:2px solid #fff;
-	background:0;
- 	background-image: -webkit-gradient(linear, 0% 0%, 100% 100%, color-stop(0%, #ffffff), color-stop(100%, #dddddd));
-	background-image: -moz-linear-gradient(top, #ffffff, #dddddd);
-	background-image: -webkit-linear-gradient(top, #ffffff, #dddddd);
-	background-image: linear-gradient(to bottom right, #ffffff, #dddddd);
-	background-repeat:no-repeat !important;
-	-webkit-background-size:cover !important;
-	-moz-background-size:cover !important;
-	-o-background-size:cover !important;
-	background-size:cover !important;
-}
-	  	
-.vspace 
-		{ 
-				height: 500px;
+     
+/*_____
+logos 
+_____*/	
+	
+#logo
+		{		
+				padding: 5px 10px;
+				width:175px;
+				height:50px;
+				margin-top: -15px;	
 		}
-  		
-.navbar .nav > li > a 
+				  
+#signin-logo
 		{
-		    text-decoration: none;
-		    color: #F5FFFA;
-		}       
-.navbar .nav > li > a:hover,.navbar .nav > li > a:focus{}
+		
+			margin: 0 auto;
+				
+		}
 
+/*___________________________
+home page table adjustments 
+___________________________*/
+
+table#siteTable td
+		{
+			height:45px;
+			text-align:left;
+		}
+		
+table#siteTable thead th
+		{
+			padding-left:10px;
+		}
+		
+table#siteTable tfoot th
+		{
+			padding-left:10px;
+		}
+		
+/*_______________________________________________________
+changing more bootstrap defaults on various elements,etc 
+_______________________________________________________*/	
+	
 .small
 		{
 		    text-decoration: none;
 		    color: #eee; 
 		    text-shadow: #555 0.05em 0.05em 0.05em;
 		} 
-		  
-#signin-logo
-{
+/*extra bottom area on clint profile page..allows scrollspy to access bottom element*/					  	
+.vspace 
+		{ 
+				height: 500px;
+		}
+/*main navigation link*/ 		
+.navbar .nav > li > a 
+		{
+		    text-decoration: none;
+		    color: #F5FFFA;
+		} 
 
-			margin: 0 auto;
+.well
+		{
+			border:none;
+			border:2px solid #fff;
+			background:0;
+		 	background-image: -webkit-gradient(linear, 0% 0%, 100% 100%, color-stop(0%, #ffffff), color-stop(100%, #dddddd));
+			background-image: -moz-linear-gradient(top, #ffffff, #dddddd);
+			background-image: -webkit-linear-gradient(top, #ffffff, #dddddd);
+			background-image: linear-gradient(to bottom right, #ffffff, #dddddd);
+			background-repeat:no-repeat !important;
+			-webkit-background-size:cover !important;
+			-moz-background-size:cover !important;
+			-o-background-size:cover !important;
+			background-size:cover !important;
+		}
 		
-}
-
-
-.cf-note{display:none;}
-
+.panel
+		{
+				border:none;
+		} 
+		
+.hr
+		{
+				height:3px;
+				border-width:0;
+				color:#00FFFF;
+				background-color:#00FFFF;
+				width: 100%;	
+		}

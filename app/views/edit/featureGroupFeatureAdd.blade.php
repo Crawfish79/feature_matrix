@@ -6,6 +6,11 @@
 	  <p><span class="glyphicon glyphicon-info-sign"></span>&nbsp;{{Session::get('status')}}</p>
 	</div>	
 @endif
+@if(Session::has('danger'))	
+	<div class="alert alert-danger">
+	  <p><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;{{Session::get('danger')}}</p>
+	</div>
+@endif
 
 	<div class="well well-sm">
 		<h3>Add New Feature To <span class="text-capitalize">{{$groupName}}</span> Group</h3>
@@ -30,12 +35,20 @@
 						<br>
 						<div class="form-group col-md-6">
 							{{Form::label('featureName','Feature Name',array('class'=>'control-label text-muted'))}}
-							{{Form::text('featureName',null,array('class'=>'form-control','placeholder'=>'* Feature Name'))}}
+							@if(isset($featureName))
+							{{Form::text('featureName',$featureName,array('class'=>'form-control','placeholder'=>'* Feature Name'))}}
+							@else
+							{{Form::text('featureName',null,array('class'=>'form-control','placeholder'=>'* Feature Name'))}}							
+							@endif
 						</div>
 	
 						<div class="form-group col-md-6">
 							{{Form::label('featureNote','Feature Note',array('class'=>'control-label text-muted'))}}
-							{{Form::text('featureNote',null,array('class'=>'form-control','placeholder'=>'* Feature Note'))}}
+							@if(isset($featureNote))
+							{{Form::textarea('featureNote',$featureNote,array('class'=>'form-control','placeholder'=>'* Feature Note'))}}
+							@else
+							{{Form::textarea('featureNote',null,array('class'=>'form-control','placeholder'=>'* Feature Note'))}}						
+							@endif
 						</div>
 											
 						<div class="text-danger col-md-6"style="height:25px;"><i>{{$errors->first('featureName')}}</i></div>

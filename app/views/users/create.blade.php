@@ -1,23 +1,45 @@
+<!-- form for creating and editing users -->
 @extends('layouts.default')
 @section('content')
 <div class="well well-sm">
-	<h3>Register New User</h3>
+	<!-- adjust heading for edit or create -->
+	@if(isset($heading))
+		<h3>{{$heading}}</h3>
+	@else
+		<h3>Register New User</h3>
+	@endif
+	
 	<p>please provide a username,email, and password</p>
 </div>
 <div class = 'panel panel-default'>
 	<div class="panel-body">
 
 	{{ Form::open(array('action'=>'UsersController@create', 'role'=>'form')) }}
-		<div class="row">
-			
-	    <div class="col-md-3 form-group">
-	    	{{ Form::label('userName', 'User Name',array('class'=>'text-muted control-label')) }}
-	    	{{ Form::text('userName', null, array('class'=>'form-control', 'placeholder'=>'* User Name')) }}
-	    </div>
-	    <div class="col-md-3 form-group">
-	    	{{ Form::label('email', 'E-mail',array('class'=>'text-muted control-label')) }}	    	
-	    	{{ Form::text('email',null, array('class'=>'form-control', 'placeholder'=>'* myemail@mail.com')) }}
-	    </div>	    
+		<!--adjust input value to determine if null or will contain user info -->
+		@if(isset($heading))	
+			{{Form::hidden('authID', Auth::user()->id)}}
+			{{Form::hidden('heading', $heading)}}
+			<div class="row">
+			    <div class="col-md-3 form-group">
+			    	{{ Form::label('userName', 'User Name',array('class'=>'text-muted control-label')) }}
+			    	{{ Form::text('userName',Auth::user()->userName, array('class'=>'form-control', 'placeholder'=>'* User Name')) }}
+			    </div>
+			    <div class="col-md-3 form-group">
+			    	{{ Form::label('email', 'E-mail',array('class'=>'text-muted control-label')) }}	    	
+			    	{{ Form::text('email',Auth::user()->email, array('class'=>'form-control', 'placeholder'=>'* myemail@mail.com')) }}
+			    </div>
+		@else
+			<div class="row">
+				<div class="col-md-3 form-group">
+			    	{{ Form::label('userName', 'User Name',array('class'=>'text-muted control-label')) }}
+			    	{{ Form::text('userName', null, array('class'=>'form-control', 'placeholder'=>'* User Name')) }}
+			    </div>
+			    <div class="col-md-3 form-group">
+			    	{{ Form::label('email', 'E-mail',array('class'=>'text-muted control-label')) }}	    	
+			    	{{ Form::text('email',null, array('class'=>'form-control', 'placeholder'=>'* myemail@mail.com')) }}
+			    </div>
+	    @endif	
+	        
 	    <div class="col-md-3 form-group">
 	    	{{ Form::label('password', 'Password',array('class'=>'text-muted control-label')) }}	    	
 	    	{{ Form::password('password', array('class'=>'form-control', 'placeholder'=>'* Password')) }}

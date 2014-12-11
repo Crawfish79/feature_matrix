@@ -21,6 +21,8 @@ class FeatureController extends BaseController {
 			    return View::make('edit.featureGroupFeatureAdd')
 			    ->with('groupName',$groupName)
 			    ->with('groupID',$groupID)
+				->with('featureName',$featureName)
+				->with('featureNote',$featureNote)
 			    ->withErrors($validator);
 			}
 			
@@ -37,8 +39,10 @@ class FeatureController extends BaseController {
 				
 				catch(\Illuminate\Database\QueryException $e)
 				{
-					Session::flash('status','<strong>'.$featureName. '</strong> already exist for this group!');										
+					Session::flash('danger','<strong>'.$featureName. ' is an existing feature name!..</strong> Please name features uniquely');										
 				    return View::make('edit.featureGroupFeatureAdd')
+				    ->with('featureName',$featureName)
+					->with('featureNote',$featureNote)
 				    ->with('groupName',$groupName)
 				    ->with('groupID',$groupID);
 				}
@@ -67,7 +71,7 @@ class FeatureController extends BaseController {
 		{
 			return Redirect::back()
 			->withInput()	
-			->with('status','<strong>This '.$groupName.' feature has dependencies!..</strong> associated client features must be removed first');		
+			->with('danger','<strong>This '.$groupName.' feature has dependencies!..</strong> associated client features must be removed first');		
 		}
 		
 		else 
@@ -101,14 +105,13 @@ class FeatureController extends BaseController {
 			$results = DB::table('clientFeatures')
 			->join('clientSites', 'clientSites.clientID', '=', 'clientFeatures.clientID')
 	        ->join('featuresTemp', 'featuresTemp.featureID', '=', 'clientFeatures.featureID')
-	        ->select('featuresTemp.featureName', 'clientSites.siteName', 'clientFeatures.clientFeatureNote')
 			
+	        ->select('featuresTemp.featureName', 'clientSites.siteName', 'clientFeatures.clientFeatureNote')
+			->where('featuresTemp.deleted_at', '=', NULL)
 			->whereRaw( 
 						"MATCH(featuresTemp.featureName) AGAINST(concat('+',?,'*') IN BOOLEAN MODE)",  
 						array($searchTerm)
-					  )		
-					  	
-			->where('featuresTemp.deleted_at', '=', NULL);
+					  );
 			
 			$resultsCount = $results->count();
 			$results = $results->paginate(10);	

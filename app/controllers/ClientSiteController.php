@@ -19,7 +19,9 @@ class ClientSiteController extends BaseController {
         {
             $join->on( 'clientFeatures.featureID', '=', 'features.featureID')			
                  ->where('clientFeatures.clientID', '=', $clientID);
-		})->get();
+		})->orderBy('featureName')
+		  ->get();
+		
 		//getting group ID's of client features to determine if a specific 
 		//feature group is present in the array of features for a client
 		$groupIDs = array();
@@ -44,7 +46,7 @@ class ClientSiteController extends BaseController {
 	{
 		
 		$rules = array(
-			'siteName'=>array('required', 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/'), 
+			'siteName'=>array('required', 'regex:/^([\da-z\.-]+)\.([a-z\.]{2,6})([\w \.-]*)*?$/'), 
 		    'description'=>'required|min:5',
 		    'launchDate'=>'required|date_format:"Y-m-d"'
 		);
@@ -55,7 +57,9 @@ class ClientSiteController extends BaseController {
 		{	//if validator fails and site is being updated(if clientID is assigned, it is being updated)
 			if(isset($_POST['clientID']))
 			{
-				return View::make('edit.create_site')->withErrors($validator)->withInput(Input::all());
+				$site = Input::get('site');
+				
+				return View::make('edit.create_site')->withErrors($validator)->withInput(Input::all())->with('site',$site);
 			} 
 			//else a new site failed validation
 			else
@@ -122,7 +126,7 @@ class ClientSiteController extends BaseController {
 	public function edit()
 	{
 		$site = Input::get('siteName');
-	    return View::make('edit.create_site')->withInput(Input::all());
+	    return View::make('edit.create_site')->withInput(Input::all())->with('site',$site);
 	}
 
 }

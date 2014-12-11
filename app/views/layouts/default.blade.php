@@ -4,7 +4,7 @@
 	
  @include('partials.head')
  
-	<body>
+	<body data-spy="scroll" data-target="#myScrollspy" data-offset="85">
 			
 		@include('partials.nav')
 			

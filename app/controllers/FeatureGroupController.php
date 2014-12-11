@@ -6,7 +6,7 @@ class FeatureGroupController extends BaseController {
 	{
 		$group = FeatureGroup::whereGroupname($groupName)->first();			
 		$groupID = $group['groupID'];
-		$featuresOfGroup = Feature::where('groupID','=', $groupID )->get();
+		$featuresOfGroup = Feature::where('groupID','=', $groupID )->orderBy('featureName')->get();
 		if(Session::has('status'))
 		{
 			return View::make('profiles.featureGroupProfile')		
@@ -31,24 +31,35 @@ class FeatureGroupController extends BaseController {
 
 		$groupName = Input::get('groupName');
 		
-		try
-		{		 
-			$newGroup = FeatureGroup::create(array('groupName' => $groupName));
+		$validator = Validator::make(['groupName' => $groupName],
+									 ['groupName' => 'required|unique:featureGroups|Between:3,14']);
+
+        if ($validator->fails())
+        {
+			 return Redirect::action('ClientSiteController@showClients')
+		     ->with('danger','<b>group name is invalid!..</b>format:unique|min:3/max:14 characters');       	
+        }
+        
+        else
+        {
+			try
+			{		 
+				$newGroup = FeatureGroup::create(array('groupName' => $groupName));
+				
+				$groupID = $newGroup->groupID;
+				
+				return View::make('edit.featureGroupFeatureAdd')
+				->with('groupName',$groupName)
+				->with('groupID',$groupID);	
+			}
 			
-			$groupID = $newGroup->groupID;
-			
-			return View::make('edit.featureGroupFeatureAdd')
-			->with('groupName',$groupName)
-			->with('groupID',$groupID);	
-		}
-		
-		catch(\Illuminate\Database\QueryException $e)
-		{			
-			return Redirect::action('ClientSiteController@showClients')
-		    ->with('status','<strong>'.$groupName.' group already exist!</strong>');			
+			catch(\Illuminate\Database\QueryException $e)
+			{			
+				return Redirect::action('ClientSiteController@showClients')
+			    ->with('danger','<strong>'.$groupName.' group already exist!</strong>');			
+			}	
 		}
 	}
-	
 	public function featureGroupDelete()
 	{
 		$groupName = Input::get('groupName');	
@@ -59,7 +70,7 @@ class FeatureGroupController extends BaseController {
 		{
 			return Redirect::back()
 			->withInput()	
-			->with('status','<strong>'.$groupName.' group has dependencies!..</strong> associated features must be removed first.');
+			->with('danger','<strong>'.$groupName.' group has dependencies!..</strong> associated features must be removed first.');
 		}
 
 		else

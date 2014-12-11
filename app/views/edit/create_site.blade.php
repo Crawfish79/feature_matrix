@@ -2,20 +2,24 @@
 @extends('layouts.default')
 @section('content')
 
-
-		<div class="well well-sm">
-				<h3>Website Registration</h3>
-				<p>please provide site name, description, and launch date</p>
-		</div>
-
+		@if(isset($_POST['clientID']))
+			<div class="well well-sm">
+					<h3>Website Edit <small>{{$site}} | Site ID:{{Input::get('clientID')}}</small></h3>
+					<p>Edit site name, description, and launch date</p>
+			</div>	
+		@else
+			<div class="well well-sm">
+					<h3>Website Registration</h3>
+					<p>please provide site name, description, and launch date</p>
+			</div>	
+		@endif
+		
 		<div class="panel panel-default">		
 			<div class="panel-body">									
 					{{ Form::open(['url'=> '/site_register','role'=>'form']) }}
 							
 						@if(isset($_POST['clientID']))
-						
-							<p class="text-danger">** EDIT | SITE ID:{{Input::get('clientID')}} **</p>
-							
+													
 							<div class="row">
 							<div class="form-group col-md-4">					
 								{{ Form::label('siteName', 'Site Name',array('class'=>'text-muted control-label')) }}
@@ -24,7 +28,7 @@
 							
 							<div class="form-group col-md-4">
 								{{ Form::label('description', 'Description',array('class'=>'text-muted control-label')) }}
-								{{ Form::text('description',Input::get('description'),['placeholder'=>'* This site ...','class'=>'form-control']) }}
+								{{ Form::textarea('description',Input::get('description'),['placeholder'=>'* This site ...','class'=>'form-control']) }}
 							</div>
 								
 							<div class="form-group col-md-4">
@@ -42,7 +46,7 @@
 							
 							<div class="form-group col-md-4">
 								{{ Form::label('description', 'Description',array('class'=>'text-muted control-label')) }}
-								{{ Form::text('description', null,['placeholder'=>'* This site ...','class'=>'form-control']) }}
+								{{ Form::textarea('description', null,['placeholder'=>'* This site ...','class'=>'form-control']) }}
 							</div>
 								
 							<div class="form-group col-md-4">
@@ -71,6 +75,7 @@
 						
 						@if(isset($_POST['clientID']))
 							{{ Form::hidden('clientID',Input::get('clientID'))}}
+							{{ Form::hidden('site',$site)}}
 						@endif
 						
 					{{ Form::close() }}

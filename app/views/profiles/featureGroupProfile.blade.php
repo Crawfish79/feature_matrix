@@ -6,7 +6,11 @@
 	  <p><span class="glyphicon glyphicon-info-sign"></span>&nbsp;{{Session::get('status')}}</p>
 	</div>	
 @endif
-
+@if(Session::has('danger'))	
+	<div class="alert alert-danger">
+	  <p><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;{{Session::get('danger')}}</p>
+	</div>
+@endif
 
 	<div class="well well-sm">
 		<div class="row">

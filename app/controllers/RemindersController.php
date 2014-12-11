@@ -19,7 +19,14 @@ class RemindersController extends Controller {
 	 */
 	public function postRemind()
 	{
-		switch ($response = Password::remind(Input::only('email')))
+
+		
+		switch ($response = Password::remind(Input::only('email'), function($message){
+			
+			    $message->subject('Dynamix Feature Matrix:Password Reset');
+			})
+		)
+		
 		{
 			case Password::INVALID_USER:
 				return Redirect::back()->with('error', Lang::get($response));
@@ -55,7 +62,10 @@ class RemindersController extends Controller {
 		
 		Password::validator(function($credentials)
 		{
-		    return strlen($credentials['password']) >= 8;
+			
+		 	$pattern = '/^[a-zA-Z0-9]{8,36}$/';
+			return preg_match($pattern, $credentials['password']);
+			
 		});
 
 		$response = Password::reset($credentials, function($user, $password)
