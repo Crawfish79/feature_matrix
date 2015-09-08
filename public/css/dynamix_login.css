@@ -1,0 +1,30 @@
+.form-signin .form-control 
+{
+	  position: relative;
+	  height: 45px;
+	  -webkit-box-sizing: border-box;
+	     -moz-box-sizing: border-box;
+	          box-sizing: border-box;
+	  padding: 10px;
+	  padding-left: 30px;
+	  font-size: 20px;
+}
+
+.form-signin .form-control:focus 
+{
+	  z-index: 2;
+}
+
+.form-signin .form-control + .glyphicon 
+{
+	  color:#777;
+	  position: absolute;
+	  left: 0;
+	  padding: 16px 27px;
+}
+
+.btn
+{
+	height:45px;
+	font-size: 20px;
+}
