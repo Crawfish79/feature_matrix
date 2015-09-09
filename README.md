@@ -12,7 +12,7 @@ Laravel aims to make the development process a pleasing one for the developer wi
 
 Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
 
-## Official Documentation
+## Official Documentation##
 
 Documentation for the entire framework can be found on the [Laravel website](http://laravel.com/docs).
 
@@ -23,42 +23,42 @@ Documentation for the entire framework can be found on the [Laravel website](htt
 ### License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
- Developers notes for this Project.. 
- 
- 
- 
- 
- 
- 
- 
- 
+ Developers notes for this Project..
+
+
+
+
+
+
+
+
  Developers Notes
 http://laravel.com/
 https://github.com/Crawfish79/feature_matrix/blob/master/README.md
-Mac Book Pro.. Apple Notes.. 
+Mac Book Pro.. Apple Notes..
 If using updated version of Mamp..
 http://www.mamp.info/en/
 app/config/database → database configuration file (```'port' 		=> '8889',)``` if updated Mamp
-Apple users/Mamp.. You will need to point in  your terminal to the version of PHP in your MAMP application .. this is accomplished by the following.. 
+Apple users/Mamp.. You will need to point in  your terminal to the version of PHP in your MAMP application .. this is accomplished by the following..
  ( where 5.5.18 would be the version of php running in your mamp application)
 ```nano .bash_profile```
 (The above will pop up a little dos like window)
 ```export MAMP_PHP=/Applications/MAMP/bin/php/php5.5.18/bin```
 ```export PATH="$MAMP_PHP:$PATH"```
-Download the project from the above github repository 
-Be sure to move the project folder into yout htdocs folder inside the MAMP application 
-from there.. 
+Download the project from the above github repository
+Be sure to move the project folder into yout htdocs folder inside the MAMP application
+from there..
 
-Be sure you have COMPOSER installed.. 
+Be sure you have COMPOSER installed..
 https://getcomposer.org/
 
- run  
+ run
  ``` composer update ```
- 
+
 This updates the  dependencies in the project
-Project/app/config/database.php 
+Project/app/config/database.php
 Username and password initially  set in Project/app/database/seeds/UsersTableSeeder.php
 
-Change the database connections to match your phpMyadmin ( http://phpmyadmin.net/home_page/downloads.php) database username password and database name ( you must create the database) PHPmyadmin comes with your MAMP installation 
+Change the database connections to match your phpMyadmin ( http://phpmyadmin.net/home_page/downloads.php) database username password and database name ( you must create the database) PHPmyadmin comes with your MAMP installation
 To  Migrate and Seed the Database.. run..
 ```php artisan migrate:refresh –seed ```
